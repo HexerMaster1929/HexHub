@@ -4,7 +4,7 @@ local StarterGui = game:GetService("StarterGui")
 
 StarterGui:SetCore("SendNotification", {
     Title = "HexHub Version";
-    Text = "Version 1.6 ~ HexHub is up to date!"
+    Text = "Version 1.7 ~ HexHub is up to date!"
 })
 
 -- HexHub UI Notifs: Loaded Notification
@@ -30,7 +30,7 @@ function findCar()
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Vehicle Simulator Succ [HexHub] - Kavo UI Re-write V1.6", "GrapeTheme")
+local Window = Library.CreateLib("HexHub V1.7 - Vehicle Simulator", "GrapeTheme")
 
 local LocalPlayerTab = Window:NewTab("Player")
 local CarModsTab = Window:NewTab("Car Mods")
@@ -238,6 +238,8 @@ local CreditSection = CreditTab:NewSection("Credit")
 SettingsSection:NewKeybind("Toggle UI Keybind", "Toggles the GUI!", Enum.KeyCode.RightShift, function()
 	Library:ToggleUI()
 end)
+
+UpdateLogSection:NewLabel("Version 1.7 - Fixed Autofarm, Added Extreme Car Keybind [Q]")
 
 UpdateLogSection:NewLabel("Version 1.6 - Due to a Patch Update, Autofarm has been removed until it is fixed.")
 
