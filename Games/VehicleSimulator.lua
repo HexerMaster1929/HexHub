@@ -104,26 +104,26 @@ myCar.Handling.TurboJump.TurboJumpHeight.Value = 25
 end)
 
 CarPresetsSection:NewButton("Extreme Car", "Transforms your car into a Extreme car!", function()
-    findCar()
-    myCar.Handling.MaxSpeed.Value = 100000
-    myCar.Handling.Torque.Value = 555555
-    myCar.Handling.SteeringRadiusConstant.Value = 150000
+     findCar()
+    myCar.Handling.MaxSpeed.Value = 50000
+    myCar.Handling.Torque.Value = 65555
+    myCar.Handling.SteeringRadiusConstant.Value = 120000
     myCar.Handling.FrictionRoad.Value = 250
     myCar.Handling.Nitro.NitroSpeed.Value = 400000
     myCar.Handling.Nitro.NitroForce.Value = 400000
-    myCar.Handling.Braking.Value = 1000000
+    myCar.Handling.Braking.Value = 100000
     myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
 end)
 
 CarPresetsSection:NewKeybind("Extreme Car keybind", "Useful for if you reset and you don't want to open the UI to set a preset!", Enum.KeyCode.Q, function()
 	 findCar()
-    myCar.Handling.MaxSpeed.Value = 100000
-    myCar.Handling.Torque.Value = 555555
-    myCar.Handling.SteeringRadiusConstant.Value = 150000
+    myCar.Handling.MaxSpeed.Value = 50000
+    myCar.Handling.Torque.Value = 65555
+    myCar.Handling.SteeringRadiusConstant.Value = 120000
     myCar.Handling.FrictionRoad.Value = 250
     myCar.Handling.Nitro.NitroSpeed.Value = 400000
     myCar.Handling.Nitro.NitroForce.Value = 400000
-    myCar.Handling.Braking.Value = 1000000
+    myCar.Handling.Braking.Value = 100000
     myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
 end)
 
