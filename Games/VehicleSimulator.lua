@@ -8,7 +8,7 @@ StarterGui:SetCore("SendNotification", {
 })
 
 -- HexHub UI Notifs: Loaded Notification
-wait(0.08)
+wait(0.9)
 StarterGui:SetCore("SendNotification", {
     Title = "HexHub";
     Text = "Hexhub Loaded! Enjoy!";
@@ -114,6 +114,19 @@ CarPresetsSection:NewButton("Extreme Car", "Transforms your car into a Extreme c
     myCar.Handling.Braking.Value = 1000000
     myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
 end)
+
+CarPresetsSection:NewKeybind("Extreme Car keybind", "Useful for if you reset and you don't want to open the UI to set a preset!", Enum.KeyCode.Q, function()
+	 findCar()
+    myCar.Handling.MaxSpeed.Value = 100000
+    myCar.Handling.Torque.Value = 555555
+    myCar.Handling.SteeringRadiusConstant.Value = 150000
+    myCar.Handling.FrictionRoad.Value = 250
+    myCar.Handling.Nitro.NitroSpeed.Value = 400000
+    myCar.Handling.Nitro.NitroForce.Value = 400000
+    myCar.Handling.Braking.Value = 1000000
+    myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
+end)
+
 
 CarPresetsSection:NewButton("Smooth Drifting", "Transforms your car into a Smooth Drifting car!", function()
     findCar()
