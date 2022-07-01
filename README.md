@@ -17,11 +17,13 @@ If you would like to try hexHub legacy, We will continue to update that until th
 
 V2 will be featuring: New Custom UI Library, New FP Games, Complete Exploit Re-Write, And Much More!!
 
-> Realease Date: Summer 2022
+> VS is Now Live!
 
 ## V1
 
-V1 is the current Newest Version Of HexHub, With daily Updates!
+~~V1 is the current Newest Version Of HexHub, With daily Updates!~~
+
+> V2 is Now Live!
 
 ## Legacy
 
