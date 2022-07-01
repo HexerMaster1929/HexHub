@@ -17,7 +17,7 @@ If you would like to try hexHub legacy, We will continue to update that until th
 
 V2 will be featuring: New Custom UI Library, New FP Games, Complete Exploit Re-Write, And Much More!!
 
-> VS is Now Live!
+> V2 is Now Live!
 
 ## V1
 
