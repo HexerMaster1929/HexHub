@@ -136,8 +136,8 @@ ScreenGui:Destroy()
 
 -- Actual Loader By HexHub 😈
 
-local SupportedGamesJSON = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://github.com/HexerMaster1929/HexHub/blob/main/Games/SupportedGames',true))
-local GitHubBase = 'https://github.com/HexerMaster1929/HexHub/tree/main/Games'
+local SupportedGamesJSON = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/Games/SupportedGames',true))
+local GitHubBase = 'https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/Games/'
 
 function IsSupported()
     for i,v in pairs(SupportedGamesJSON) do
@@ -157,6 +157,6 @@ task.spawn(function()
             end
         end
     else
-        loadstring(game:HttpGet(GitHubBase..'Universal',true))()
+       -- Notification when im not lazy
     end
 end)
