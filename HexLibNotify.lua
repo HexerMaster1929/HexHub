@@ -27,7 +27,7 @@ UIListLayout.Padding = UDim.new(0.05, 0)
 
 
 
-function HexNotification(Title,Desc,Icon,SoundID) -- Changed time to sound id so you can have custon notification sounds if you want to use this shit.
+function Notify(Title,Desc,Icon,SoundID) -- Changed time to sound id so you can have custon notification sounds if you want to use this shit.
 	
 	-- Building Notification GUI
 	
@@ -50,7 +50,8 @@ function HexNotification(Title,Desc,Icon,SoundID) -- Changed time to sound id so
 	NFrame.Position = UDim2.new(1.10000002, 0, 0.906748474, 0)
 	NFrame.Size = UDim2.new(0, 0, 0, 0)
 	NFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-
+	NFrame.BorderSizePixel = 0
+	
 	NFCorner.CornerRadius = UDim.new(0.200000003, 2)
 	NFCorner.Name = "NFCorner"
 	NFCorner.Parent = NFrame
