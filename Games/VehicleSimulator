@@ -1,20 +1,12 @@
-local StarterGui = game:GetService("StarterGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/Notification%20(Public%20For%20Exploit%20Makers).lua"))()
 
 -- HexHub UI Notifs: Version Notification
+HexNotification("HexHub Version","Version 2.0A ~ HexHub is up to date!","rbxassetid://10507208390","904856168")
 
-StarterGui:SetCore("SendNotification", {
-    Title = "HexHub Version";
-    Text = "Version 1.7 ~ HexHub is up to date!"
-})
 
 -- HexHub UI Notifs: Loaded Notification
 wait(0.9)
-StarterGui:SetCore("SendNotification", {
-    Title = "HexHub";
-    Text = "Hexhub Loaded! Enjoy!";
-    Icon = "rbxassetid://9460077691"
-})
-
+HexNotification("HexHub","Hexhub Loaded! Enjoy!","rbxassetid://9460077691","904856168")
 
 -- Finds car before loading, Ensuring the GUI will work.
 function findCar()
@@ -28,9 +20,9 @@ function findCar()
     end
     end
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/UILIB.lua"))()
 
-local Window = Library.CreateLib("HexHub V1.7 - Vehicle Simulator", "GrapeTheme")
+local Window = Library.CreateLib("HexHub V2 - Vehicle Simulator", "HexHub")
 
 local LocalPlayerTab = Window:NewTab("Player")
 local CarModsTab = Window:NewTab("Car Mods")
@@ -238,6 +230,7 @@ local CreditSection = CreditTab:NewSection("Credit")
 SettingsSection:NewKeybind("Toggle UI Keybind", "Toggles the GUI!", Enum.KeyCode.RightShift, function()
 	Library:ToggleUI()
 end)
+UpdateLogSection:NewLabel("Version 2.0A - UI System Update")
 
 UpdateLogSection:NewLabel("Version 1.7 - Fixed Autofarm, Added Extreme Car Keybind [Q]")
 
@@ -261,3 +254,19 @@ CreditSection:NewButton("Copy Discord Invite", "Copy's Discord Server Invite!", 
     setclipboard("Test Invite")
 end)
 
+local TextBox1 = Section1:CreateTextBox("Textbox", nil, true, function(Value)
+  
+end)
+
+local Button1 = Section1:CreateButton("Button", function()
+    
+end)
+
+local Colorpicker3 = Section1:CreateColorpicker("ColorPicker", function(Color)
+	
+end)
+
+
+local Slider4 = Section1:CreateSlider("Slider",nil,false, function(Value)
+
+end)
