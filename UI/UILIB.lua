@@ -120,11 +120,11 @@ local themeStyles = {
 		ElementColor = Color3.fromRGB(170, 170, 255)
 	},
 	HexHub = {
-		SchemeColor = Color3.fromRGB(84, 84, 126),
+		SchemeColor = Color3.fromRGB(0, 0, 0),
 		Background = Color3.fromRGB(255, 255, 255),
 		Header = Color3.fromRGB(170, 170, 255),
 		TextColor = Color3.fromRGB(255, 255, 255),
-		ElementColor = Color3.fromRGB(170, 170, 255)
+		ElementColor = Color3.fromRGB(170, 85, 255)
 	}
 }
 local oldTheme = ""
