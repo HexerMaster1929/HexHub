@@ -3,6 +3,10 @@
 
 HexHub.xyz - Discord.gg/HexHub
 
+# LoadString
+
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoader.lua", true))()`
+
 ### About
 
 HexHub is A New Roblox Hub with tons of games Added daily!
