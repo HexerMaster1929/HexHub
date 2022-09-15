@@ -19,12 +19,205 @@ function ButtonSFX()
 end
 end
 
+local themes = {
+	SchemeColor = Color3.fromRGB(74, 99, 135),
+	Background = Color3.fromRGB(36, 37, 43),
+	Header = Color3.fromRGB(28, 29, 34),
+	TextColor = Color3.fromRGB(255,255,255),
+	ElementColor = Color3.fromRGB(32, 32, 38)
+}
+local themeStyles = {
+	DarkTheme = {
+		SchemeColor = Color3.fromRGB(64, 64, 64),
+		Background = Color3.fromRGB(0, 0, 0),
+		Header = Color3.fromRGB(0, 0, 0),
+		TextColor = Color3.fromRGB(255,255,255),
+		ElementColor = Color3.fromRGB(20, 20, 20)
+	},
+	LightTheme = {
+		Background = Color3.fromRGB(255,255,255),
+		DarkerBackground = Color3.fromRGB(200, 200, 200),
+		StrokeColor = Color3.fromRGB(0, 0, 0),
+		TextColor = Color3.fromRGB(0,0,0),
+		ElementColor = Color3.fromRGB(224, 224, 224)
+	},
+	HexHubTheme = {
+		Background = Color3.fromRGB(170, 170, 255),
+		DarkerBackground = Color3.fromRGB(138, 140, 255),
+		StrokeColor = Color3.fromRGB(255, 255, 255),
+		TextColor = Color3.fromRGB(255, 255, 255),
+		ElementColor = Color3.fromRGB(170, 170, 255)
+	},
+	GrapeTheme = {
+		
+	},
+	Ocean = {
+		
+	},
+	Midnight = {
+		BackgroundDarker = Color3.fromRGB(26, 189, 158),
+		Background = Color3.fromRGB(44, 62, 82),
+		StrokeColor = Color3.fromRGB(255, 255, 255),
+		TextColor = Color3.fromRGB(255, 255, 255),
+		ElementColor = Color3.fromRGB(52, 74, 95)
+	},
+	Sentinel = {
+		
+	}
+}
+
+local notification_v2 = Instance.new("ScreenGui")
+notification_v2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+notification_v2.Name = "NotificationV2"
+notification_v2.Parent = game.Players.LocalPlayer.PlayerGui
+notification_v2.IgnoreGuiInset = true
+
+local notification_holder = Instance.new("Frame")
+notification_holder.AnchorPoint = Vector2.new(0.5, 0.5)
+notification_holder.BackgroundColor3 = Color3.new(1, 1, 1)
+notification_holder.BackgroundTransparency = 1
+notification_holder.ClipsDescendants = true
+notification_holder.Position = UDim2.new(0.874439538, 0, 0.690856338, 0)
+notification_holder.Size = UDim2.new(0, 306, 0, 394)
+notification_holder.Name = "NotificationHolder"
+notification_holder.Parent = notification_v2
+
+local NotifListLayout = Instance.new("UIListLayout")
+NotifListLayout.Padding = UDim.new(0, 10)
+NotifListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+NotifListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+NotifListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+NotifListLayout.Parent = notification_holder
+
+local NotifPadding = Instance.new("UIPadding")
+NotifPadding.PaddingBottom = UDim.new(0, 10)
+NotifPadding.PaddingLeft = UDim.new(0, 10)
+NotifPadding.PaddingRight = UDim.new(0, 10)
+NotifPadding.PaddingTop = UDim.new(0, 10)
+NotifPadding.Parent = notification_holder
+
+function Lib:MakeNotification(Title,Desc,Icon,NotificationTime)
+
+	local notification_template = Instance.new("Frame")
+	notification_template.AnchorPoint = Vector2.new(0.5, 0.5)
+	notification_template.BackgroundColor3 = Color3.new(0.666667, 0.666667, 1)
+	notification_template.BorderSizePixel = 0
+	notification_template.Position = UDim2.new(0.510201156, 0, 0.62772131, 0)
+	notification_template.Name = "NotificationTemplate"
+	notification_template.Parent = notification_holder
+
+	local backing = Instance.new("Frame")
+	backing.AnchorPoint = Vector2.new(0.5, 0.5)
+	backing.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
+	backing.BorderSizePixel = 0
+	backing.ClipsDescendants = true
+	backing.Position = UDim2.new(0.379496396, 0, 0.5, 0)
+	backing.Name = "Backing"
+	backing.Parent = notification_template
+
+	local uipadding = Instance.new("UIPadding")
+	uipadding.PaddingTop = UDim.new(0.029999999329447746, 0)
+	uipadding.Parent = backing
+
+	local main_corner = Instance.new("UICorner")
+	main_corner.CornerRadius = UDim.new(0.05000000074505806, 15)
+	main_corner.Name = "MainCorner"
+	main_corner.Parent = backing
+
+	local uistroke = Instance.new("UIStroke")
+	uistroke.Color = Color3.new(1, 1, 1)
+	uistroke.Thickness = 2
+	uistroke.Parent = backing
+
+	local main_gradient = Instance.new("UIGradient")
+	main_gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.639216, 0.639216, 0.639216))})
+	main_gradient.Rotation = 90
+	main_gradient.Name = "MainGradient"
+	main_gradient.Parent = notification_template
+
+	local title = Instance.new("TextLabel")
+	title.Font = Enum.Font.FredokaOne
+	title.Text = Title
+	title.TextColor3 = Color3.new(1, 1, 1)
+	title.TextScaled = true
+	title.TextSize = 14
+	title.TextWrapped = true
+	title.BackgroundColor3 = Color3.new(1, 1, 1)
+	title.BackgroundTransparency = 1
+	title.BorderSizePixel = 0
+	title.Position = UDim2.new(0.0843172148, 0, 0.164473683, 0)
+	title.Name = "Title"
+	title.Parent = notification_template
+
+	local desc = Instance.new("TextLabel")
+	desc.Font = Enum.Font.FredokaOne
+	desc.Text = Desc
+	desc.TextColor3 = Color3.new(1, 1, 1)
+	desc.TextScaled = true
+	desc.TextSize = 14
+	desc.TextWrapped = true
+	desc.BackgroundColor3 = Color3.new(1, 1, 1)
+	desc.BackgroundTransparency = 1
+	desc.BorderSizePixel = 0
+	desc.Position = UDim2.new(0.0843172148, 0, 0.519736826, 0)
+	desc.Name = "Desc"
+	desc.Parent = notification_template
+
+	local notif_icon = Instance.new("ImageLabel")
+	notif_icon.Image = "rbxassetid://"..tostring(Icon)
+	notif_icon.AnchorPoint = Vector2.new(0.5, 0.5)
+	notif_icon.BackgroundColor3 = Color3.new(1, 1, 1)
+	notif_icon.BackgroundTransparency = 1
+	notif_icon.BorderSizePixel = 0
+	notif_icon.Position = UDim2.new(0.852999985, 0, 0.5, 0)
+	notif_icon.Name = "NotifIcon"
+	notif_icon.Parent = notification_template
+
+	local main_corner_2 = Instance.new("UICorner")
+	main_corner_2.CornerRadius = UDim.new(0.05000000074505806, 15)
+	main_corner_2.Name = "MainCorner"
+	main_corner_2.Parent = notif_icon
+
+	local uistroke_2 = Instance.new("UIStroke")
+	uistroke_2.Color = Color3.new(1, 1, 1)
+	uistroke_2.Thickness = 2
+	uistroke_2.Parent = notif_icon
+
+	local main_corner_3 = Instance.new("UICorner")
+	main_corner_3.CornerRadius = UDim.new(0.05000000074505806, 15)
+	main_corner_3.Name = "MainCorner"
+	main_corner_3.Parent = notification_template
+
+	local uistroke_3 = Instance.new("UIStroke")
+	uistroke_3.Color = Color3.new(1, 1, 1)
+	uistroke_3.Thickness = 2
+	uistroke_3.Parent = notification_template
+
+	wait()
+	ButtonSFX()
+	notification_template.Visible = true
+	wait()
+	game.TweenService:Create(notification_template, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 278,0, 76),}):Play()
+	game.TweenService:Create(backing, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 182,0, 57),}):Play()
+	game.TweenService:Create(title, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 164,0, 30),}):Play()
+	game.TweenService:Create(desc, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 164,0, 24),}):Play()
+	game.TweenService:Create(notif_icon, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 56,0, 56),}):Play()
+	wait(NotificationTime)
+	game.TweenService:Create(notification_template, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0,0,0,0),}):Play()
+	game.TweenService:Create(backing, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0,0,0,0),}):Play()
+	game.TweenService:Create(title, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0,0,0,0),}):Play()
+	game.TweenService:Create(desc, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0,0,0,0),}):Play()
+	game.TweenService:Create(notif_icon, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0,0,0,0),}):Play()
+	wait(.15)
+	notification_template:Destroy()
+end
+
 function Lib.CreateWindow(WindowName)
 	
 	local hexhub_v3 = Instance.new("ScreenGui")
 	hexhub_v3.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	hexhub_v3.Name = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
-	hexhub_v3.Parent = game.CoreGui
+	hexhub_v3.Parent = game.Players.LocalPlayer.PlayerGui
 
 	local hexhub_frame = Instance.new("Frame")
 	hexhub_frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -988,7 +1181,7 @@ game.TweenService:Create(section_main_piece, TweenInfo.new(.15, Enum.EasingStyle
 			UpdateSectionSize()
 		
 				main_button.MouseButton1Down:Connect(function()
-						ButtonSFX()
+					ButtonSFX()
 					callback()
 				end)
 				
@@ -1360,7 +1553,7 @@ end
 
 				local KT = Instance.new("TextLabel")
 				KT.Font = Enum.Font.Gotham
-				KT.Text = "Test KeyBind"
+				KT.Text = KeybindName
 				KT.TextColor3 = Color3.new(1, 1, 1)
 				KT.TextScaled = true
 				KT.TextSize = 14
@@ -1397,7 +1590,6 @@ end
 
 				local KBTXT = Instance.new("TextLabel")
 				KBTXT.Font = Enum.Font.Gotham
-				KBTXT.Text = "Q"
 				KBTXT.TextColor3 = Color3.new(1, 1, 1)
 				KBTXT.TextScaled = true
 				KBTXT.TextSize = 14
@@ -1452,7 +1644,6 @@ end
 				end)
 				
 			end
-			
 			
 	function Elements:Dropdown(name,tabl,callback)
 		-- not done
