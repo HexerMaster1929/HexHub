@@ -1,11 +1,8 @@
 # HexHub
 
-## Update ~ 9/14/22
+## Update ~ 9/15/22
 
-I Have Decided To Make A Fully Custom UI Lib Rather Than Use A Modified Kavo UI, During 
-this time, I Have Placed HexHub's Development On Hold!
-
-Best Regards, Hexer (Aka Mark)
+HexHub's Brand New Made From Scrach UI Is Out!
 
 ## #1 Free & Most Updated Roblox Exploit!
 
