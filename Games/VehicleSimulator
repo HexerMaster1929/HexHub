@@ -59,6 +59,11 @@ PlayerStuffSection:NewButton("Get Perks", "Get Owner Perks!", function()
 	game:GetService("Players").LocalPlayer.UserId = 1099580
 end)
 
+PlayerStuffSection:NewButton("Fix Playerlist Disappearing", "Fix", function()
+	local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
+end)
+
 -- Car Mods Tab Stuff
 
 local CarModsSection = CarModsTab:NewSection("Mods")
