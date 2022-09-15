@@ -1050,7 +1050,7 @@ game.TweenService:Create(section_main_piece, TweenInfo.new(.15, Enum.EasingStyle
 
 				local button_title = Instance.new("TextLabel")
 				button_title.Font = Enum.Font.Gotham
-				button_title.Text = "Test Toggle"
+				button_title.Text = ToggleName
 				button_title.TextColor3 = Color3.new(1, 1, 1)
 				button_title.TextScaled = true
 				button_title.TextSize = 14
