@@ -988,6 +988,7 @@ game.TweenService:Create(section_main_piece, TweenInfo.new(.15, Enum.EasingStyle
 			UpdateSectionSize()
 		
 				main_button.MouseButton1Down:Connect(function()
+						ButtonSFX()
 					callback()
 				end)
 				
