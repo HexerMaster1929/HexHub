@@ -68,7 +68,7 @@ local themeStyles = {
 
 local notification_v2 = Instance.new("ScreenGui")
 notification_v2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-notification_v2.Name = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 4883))..tostring(math.random(1, 92984)..tostring(math.random(1, 20)..tostring(math.random(1, 300))))
+notification_v2.Name = "NotificationUI"
 notification_v2.Parent = game.CoreGui
 notification_v2.IgnoreGuiInset = true
 
@@ -216,7 +216,7 @@ function Lib.CreateWindow(WindowName)
 
 	local hexhub_v3 = Instance.new("ScreenGui")
 	hexhub_v3.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	hexhub_v3.Name =  tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 4883))..tostring(math.random(1, 92984)..tostring(math.random(1, 20)..tostring(math.random(1, 300))))
+	hexhub_v3.Name =  "HexHubLib"
 	hexhub_v3.Parent = game.CoreGui
 
 	local hexhub_frame = Instance.new("Frame")
