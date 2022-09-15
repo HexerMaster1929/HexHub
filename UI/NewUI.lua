@@ -68,17 +68,17 @@ local themeStyles = {
 
 local notification_v2 = Instance.new("ScreenGui")
 notification_v2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-notification_v2.Name = "NotificationUI"
+notification_v2.Name = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 4883))..tostring(math.random(1, 92984)..tostring(math.random(1, 20)..tostring(math.random(1, 300))))
 notification_v2.Parent = game.CoreGui
 notification_v2.IgnoreGuiInset = true
 
 local notification_holder = Instance.new("Frame")
-notification_holder.AnchorPoint = Vector2.new(0.5, 0.5)
+notification_holder.AnchorPoint = Vector2.new(1, 1)
 notification_holder.BackgroundColor3 = Color3.new(1, 1, 1)
 notification_holder.BackgroundTransparency = 1
 notification_holder.ClipsDescendants = true
-notification_holder.Position = UDim2.new(0.874439538, 0, 0.690856338, 0)
-notification_holder.Size = UDim2.new(0, 306, 0, 394)
+notification_holder.Position = UDim2.new(1,0,1,0)
+notification_holder.Size = UDim2.new(0, 306,0, 263)
 notification_holder.Name = "NotificationHolder"
 notification_holder.Parent = notification_v2
 
@@ -216,7 +216,7 @@ function Lib.CreateWindow(WindowName)
 
 	local hexhub_v3 = Instance.new("ScreenGui")
 	hexhub_v3.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	hexhub_v3.Name =  "HexHubLib"
+	hexhub_v3.Name =  tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 4883))..tostring(math.random(1, 92984)..tostring(math.random(1, 20)..tostring(math.random(1, 300))))
 	hexhub_v3.Parent = game.CoreGui
 
 	local hexhub_frame = Instance.new("Frame")
