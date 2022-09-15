@@ -1,49 +1,62 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/Notification%20(Public%20For%20Exploit%20Makers).lua"))()
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/NewUI.lua"))()
 
 -- HexHub UI Notifs: Version Notification
-HexNotification("HexHub Version","Version 2.0A ~ HexHub is up to date!","rbxassetid://10507208390","904856168")
 
+Library:MakeNotification("HexHub Version","Version 3.1A ~ HexHub is up to date!",10507208390,5.6)
 
 -- HexHub UI Notifs: Loaded Notification
 wait(0.9)
-HexNotification("HexHub","Hexhub Loaded! Enjoy!","rbxassetid://9460077691","904856168")
 
--- Finds car before loading, Ensuring the GUI will work.
+Library:MakeNotification("HexHub","Hexhub Loaded! Enjoy!",9460077691,5.6)
+
+if _G.HexHubLOADED then 
+    Library:MakeNotification("Error","HexHub Is Already Loaded!",9460077691,5.6)
+    else
+        _G.HexHubLOADED = true
+        
+        
+        -- Finds car before loading, Ensuring the GUI will work.
 function findCar()
-    local vehicle = workspace.Vehicles:getChildren()
-    for i=1,#vehicle do
-    if vehicle[i]:findFirstChild("owner") then
-    if vehicle[i].owner.Value == game.Players.LocalPlayer.Name then
-    myCar = vehicle[i]
-    end
-    end
-    end
-    end
+	local vehicle = workspace.Vehicles:getChildren()
+	for i=1,#vehicle do
+		if vehicle[i]:findFirstChild("owner") then
+			if vehicle[i].owner.Value == game.Players.LocalPlayer.Name then
+				myCar = vehicle[i]
+			end
+		end
+	end
+end
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/UILIB.lua"))()
+local settings = {
+	af = false,
 
-local Window = Library.CreateLib("HexHub V2 - Vehicle Simulator", "HexHub")
+}
+
+
+
+local Window = Library.CreateWindow("HexHub V3 - Vehicle Simulator")
 
 local LocalPlayerTab = Window:NewTab("Player")
 local CarModsTab = Window:NewTab("Car Mods")
 local AutofarmTab = Window:NewTab("Autofarm")
 local CratesTab = Window:NewTab("Crates")
-local CreditTab = Window:NewTab("Credits & Settings")
+
 
 -- Player Tab Stuff
 
 local PlayerStuffSection = LocalPlayerTab:NewSection("Player Stuff")
 
-PlayerStuffSection:NewSlider("Walkspeed", "Changes Your Walkspeed!", 1000, 16, function(WS) 
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
+PlayerStuffSection:NewSlider("Walkspeed", 16, 1000, function(WS) 
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
 end)
 
-PlayerStuffSection:NewSlider("Jump Height", "Changes your Jump Height!", 1000, 50, function(JP) 
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
+PlayerStuffSection:NewSlider("Jump Height", 50, 1000, function(JP) 
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
 end)
 
-PlayerStuffSection:NewButton("Get Perks", "Get owner Perks!", function(GetPerks)
-    game:GetService("Players").LocalPlayer.UserId = 1099580
+PlayerStuffSection:NewButton("Get Perks", "Get Owner Perks!", function()
+	game:GetService("Players").LocalPlayer.UserId = 1099580
 end)
 
 -- Car Mods Tab Stuff
@@ -51,97 +64,97 @@ end)
 local CarModsSection = CarModsTab:NewSection("Mods")
 local CarPresetsSection = CarModsTab:NewSection("Presets")
 
-CarModsSection:NewTextBox("Nitro Speed", "Change Nitro Speed!", function(NSV)
+CarModsSection:NewTextBox("Nitro Speed", "Value", function(NSV)
 	findCar()
-    myCar.Handling.Nitro.NitroSpeed.Value = NSV
+	myCar.Handling.Nitro.NitroSpeed.Value = NSV
 end)
 
-CarModsSection:NewTextBox("Nitro Force", "Change Nitro Force!", function(NFV)
+CarModsSection:NewTextBox("Nitro Force", "Value", function(NFV)
 	findCar()
-    myCar.Handling.Nitro.NitroForce.Value = NFV
+	myCar.Handling.Nitro.NitroForce.Value = NFV
 end)
 
-CarModsSection:NewTextBox("Jump Height", "Change Jump Height!", function(JHV)
+CarModsSection:NewTextBox("Jump Height", "Value", function(JHV)
 	findCar()
-    myCar.Handling.TurboJump.TurboJumpHeight.Value = JHV
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = JHV
 end)
 
-CarModsSection:NewTextBox("Torque", "Change Torque!", function(TQV)
+CarModsSection:NewTextBox("Torque", "Value", function(TQV)
 	findCar()
-    myCar.Handling.Torque.Value = TQV
+	myCar.Handling.Torque.Value = TQV
 
 end)
 
-CarModsSection:NewTextBox("Speed", "Change Speed!", function(SPV)
+CarModsSection:NewTextBox("Speed", "Value", function(SPV)
 	findCar()
-    myCar.Handling.MaxSpeed.Value = SPV
-myCar.Handling.SteeringRadiusConstant.Value = 15000
+	myCar.Handling.MaxSpeed.Value = SPV
+	myCar.Handling.SteeringRadiusConstant.Value = 15000
 end)
 
-CarModsSection:NewTextBox("Braking", "Change Braking!", function(BKV)
+CarModsSection:NewTextBox("Braking", "Value", function(BKV)
 	findCar()
-    myCar.Handling.Braking.Value = BKV
+	myCar.Handling.Braking.Value = BKV
 end)
 
-CarPresetsSection:NewButton("Super Car", "Transforms your car into a Super car!", function()
-    findCar()
-myCar.Handling.MaxSpeed.Value = 10000
-myCar.Handling.Torque.Value = 55555
-myCar.Handling.SteeringRadiusConstant.Value = 15000
-myCar.Handling.FrictionRoad.Value = 250
-myCar.Handling.Nitro.NitroSpeed.Value = 100000
-myCar.Handling.Nitro.NitroForce.Value = 100000
-myCar.Handling.Braking.Value = 100000
-myCar.Handling.TurboJump.TurboJumpHeight.Value = 25
+CarPresetsSection:NewButton("Super Car", "Apply", function()
+	findCar()
+	myCar.Handling.MaxSpeed.Value = 10000
+	myCar.Handling.Torque.Value = 55555
+	myCar.Handling.SteeringRadiusConstant.Value = 15000
+	myCar.Handling.FrictionRoad.Value = 250
+	myCar.Handling.Nitro.NitroSpeed.Value = 100000
+	myCar.Handling.Nitro.NitroForce.Value = 100000
+	myCar.Handling.Braking.Value = 100000
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = 25
 end)
 
-CarPresetsSection:NewButton("Extreme Car", "Transforms your car into a Extreme car!", function()
-     findCar()
-    myCar.Handling.MaxSpeed.Value = 50000
-    myCar.Handling.Torque.Value = 65555
-    myCar.Handling.SteeringRadiusConstant.Value = 120000
-    myCar.Handling.FrictionRoad.Value = 250
-    myCar.Handling.Nitro.NitroSpeed.Value = 400000
-    myCar.Handling.Nitro.NitroForce.Value = 400000
-    myCar.Handling.Braking.Value = 100000
-    myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
+CarPresetsSection:NewButton("Extreme Car", "Apply", function()
+	findCar()
+	myCar.Handling.MaxSpeed.Value = 50000
+	myCar.Handling.Torque.Value = 65555
+	myCar.Handling.SteeringRadiusConstant.Value = 120000
+	myCar.Handling.FrictionRoad.Value = 250
+	myCar.Handling.Nitro.NitroSpeed.Value = 400000
+	myCar.Handling.Nitro.NitroForce.Value = 400000
+	myCar.Handling.Braking.Value = 100000
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
 end)
 
-CarPresetsSection:NewKeybind("Extreme Car keybind", "Useful for if you reset and you don't want to open the UI to set a preset!", Enum.KeyCode.Q, function()
-	 findCar()
-    myCar.Handling.MaxSpeed.Value = 50000
-    myCar.Handling.Torque.Value = 65555
-    myCar.Handling.SteeringRadiusConstant.Value = 120000
-    myCar.Handling.FrictionRoad.Value = 250
-    myCar.Handling.Nitro.NitroSpeed.Value = 400000
-    myCar.Handling.Nitro.NitroForce.Value = 400000
-    myCar.Handling.Braking.Value = 100000
-    myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
+CarPresetsSection:NewKeybind("Extreme Car keybind", Enum.KeyCode.Q, function(Key)
+	findCar()
+	myCar.Handling.MaxSpeed.Value = 50000
+	myCar.Handling.Torque.Value = 65555
+	myCar.Handling.SteeringRadiusConstant.Value = 120000
+	myCar.Handling.FrictionRoad.Value = 250
+	myCar.Handling.Nitro.NitroSpeed.Value = 400000
+	myCar.Handling.Nitro.NitroForce.Value = 400000
+	myCar.Handling.Braking.Value = 100000
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = 250
 end)
 
 
-CarPresetsSection:NewButton("Smooth Drifting", "Transforms your car into a Smooth Drifting car!", function()
-    findCar()
-myCar.Handling.MaxSpeed.Value = 5000
-myCar.Handling.Torque.Value = 20000
-myCar.Handling.SteeringRadiusConstant.Value = 15000
-myCar.Handling.FrictionRoad.Value = 100
-myCar.Handling.Nitro.NitroSpeed.Value = 10000
-myCar.Handling.Nitro.NitroForce.Value = 10000
-myCar.Handling.Braking.Value = 100000
-myCar.Handling.TurboJump.TurboJumpHeight.Value = 25
+CarPresetsSection:NewButton("Smooth Drifting", "Apply", function()
+	findCar()
+	myCar.Handling.MaxSpeed.Value = 5000
+	myCar.Handling.Torque.Value = 20000
+	myCar.Handling.SteeringRadiusConstant.Value = 15000
+	myCar.Handling.FrictionRoad.Value = 100
+	myCar.Handling.Nitro.NitroSpeed.Value = 10000
+	myCar.Handling.Nitro.NitroForce.Value = 10000
+	myCar.Handling.Braking.Value = 100000
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = 25
 end)
 
-CarPresetsSection:NewButton("Racing", "Transforms your car into a Racing car!", function()
-    findCar()
-myCar.Handling.MaxSpeed.Value = 1000
-myCar.Handling.Torque.Value = 30000
-myCar.Handling.SteeringRadiusConstant.Value = 150000
-myCar.Handling.FrictionRoad.Value = 300
-myCar.Handling.Nitro.NitroSpeed.Value = 100000
-myCar.Handling.Nitro.NitroForce.Value = 100000
-myCar.Handling.Braking.Value = 1000000
-myCar.Handling.TurboJump.TurboJumpHeight.Value = 45
+CarPresetsSection:NewButton("Racing", "Apply", function()
+	findCar()
+	myCar.Handling.MaxSpeed.Value = 1000
+	myCar.Handling.Torque.Value = 30000
+	myCar.Handling.SteeringRadiusConstant.Value = 150000
+	myCar.Handling.FrictionRoad.Value = 300
+	myCar.Handling.Nitro.NitroSpeed.Value = 100000
+	myCar.Handling.Nitro.NitroForce.Value = 100000
+	myCar.Handling.Braking.Value = 1000000
+	myCar.Handling.TurboJump.TurboJumpHeight.Value = 45
 end)
 
 -- Autofarm Tab stuff
@@ -149,124 +162,167 @@ end)
 local VehicleFarmSection = AutofarmTab:NewSection("Vehicle")
 local CrateFarmSection = AutofarmTab:NewSection("Crates")
 
-VehicleFarmSection:NewLabel("Broken Due to update.")
+VehicleFarmSection:NewToggle("Autofarm", function(state)
+	print(state)
+	settings.af = state
 
-CrateFarmSection:NewButton("Get All Crates", "Grabs All Spawned Crates!", function()
-    local crates = workspace:getChildren()
-for i=1,#crates do
-if crates[i].ClassName == "Model" then
-local crates2 = crates[i]:getChildren()
-for i=1,#crates2 do
-if crates2[i].ClassName == "Model" then
-local crates3 = crates2[i]:getChildren()
-for i=1,#crates3 do
-if crates3[i].ClassName == "MeshPart" then
-if crates3[i]:findFirstChild("Smoke") then
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(crates3[i].Position.X+30,crates3[i].Position.Y+5,crates3[i].Position.Z))
-wait()
-game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(crates3[i].Position.X,crates3[i].Position.Y,crates3[i].Position.Z))
-wait(4)
-end
-end
-end
-end
-end
-end
-end
+	if state then
+Library:MakeNotification("HexHub","Hexhub Autofarm Loading, This may Take A Second...",9460077691,5.6)
+	elseif not state then
+
+		game:GetService("VirtualInputManager"):SendKeyEvent(false, "W", false, uwu)
+
+	Library:MakeNotification("HexHub","Autofarm Disabled",9460077691,5.6)
+	end
+end)
+
+CrateFarmSection:NewButton("Get All Crates", "Grab Crates", function()
+	local crates = workspace:getChildren()
+	for i=1,#crates do
+		if crates[i].ClassName == "Model" then
+			local crates2 = crates[i]:getChildren()
+			for i=1,#crates2 do
+				if crates2[i].ClassName == "Model" then
+					local crates3 = crates2[i]:getChildren()
+					for i=1,#crates3 do
+						if crates3[i].ClassName == "MeshPart" then
+							if crates3[i]:findFirstChild("Smoke") then
+								game.Players.LocalPlayer.Character:MoveTo(Vector3.new(crates3[i].Position.X+30,crates3[i].Position.Y+5,crates3[i].Position.Z))
+								wait()
+								game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(crates3[i].Position.X,crates3[i].Position.Y,crates3[i].Position.Z))
+								wait(4)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 end)
 
 -- Crates Tab Stuff
 
 local CrateVisualsSection = CratesTab:NewSection("Visuals")
-local CrateFarmSectionOld = CratesTab:NewSection("Farm Crates")
 
-CrateFarmSectionOld:NewLabel("Crate Farm Moved To Autofarm Tab.")
-
-CrateVisualsSection:NewButton("Crate ESP", "Turns On ESP For Crates!", function()
-    local crates = workspace:getChildren()
-for i=1,#crates do
-if crates[i].ClassName == "Model" then
-local crates2 = crates[i]:getChildren()
-for i=1,#crates2 do
-if crates2[i].ClassName == "Model" then
-local crates3 = crates2[i]:getChildren()
-for i=1,#crates3 do
-if crates3[i].ClassName == "MeshPart" then
-if crates3[i]:findFirstChild("Smoke") then
-if crates3[i]:findFirstChild("BoxHandleAdornment") then
-	crates3[i]:findFirstChild("BoxHandleAdornment"):Remove()
-else
-local a = Instance.new("BoxHandleAdornment",crates3[i])
-a.Size = Vector3.new(10,500,6)
-a.SizeRelativeOffset = Vector3.new(0,135,0)
-a.Color3 = Color3.fromRGB(0,255,0)
-a.Transparency = 0.5
-a.AlwaysOnTop = true
-a.Adornee = crates3[i]
-a.ZIndex = 1
-local b = Instance.new("BoxHandleAdornment",crates3[i])
-b.Size = Vector3.new(10,4,6)
-b.Color3 = Color3.fromRGB(0,0,255)
-b.Transparency = 0.3
-b.AlwaysOnTop = true
-b.Adornee = crates3[i]
-b.ZIndex = 1
-end
-end
-end
-end
-end
-end
-end
-end
+CrateVisualsSection:NewButton("Crate ESP", "Activate", function()
+	local crates = workspace:getChildren()
+	for i=1,#crates do
+		if crates[i].ClassName == "Model" then
+			local crates2 = crates[i]:getChildren()
+			for i=1,#crates2 do
+				if crates2[i].ClassName == "Model" then
+					local crates3 = crates2[i]:getChildren()
+					for i=1,#crates3 do
+						if crates3[i].ClassName == "MeshPart" then
+							if crates3[i]:findFirstChild("Smoke") then
+								if crates3[i]:findFirstChild("BoxHandleAdornment") then
+									crates3[i]:findFirstChild("BoxHandleAdornment"):Remove()
+								else
+									local a = Instance.new("BoxHandleAdornment",crates3[i])
+									a.Size = Vector3.new(10,500,6)
+									a.SizeRelativeOffset = Vector3.new(0,135,0)
+									a.Color3 = Color3.fromRGB(0,255,0)
+									a.Transparency = 0.5
+									a.AlwaysOnTop = true
+									a.Adornee = crates3[i]
+									a.ZIndex = 1
+									local b = Instance.new("BoxHandleAdornment",crates3[i])
+									b.Size = Vector3.new(10,4,6)
+									b.Color3 = Color3.fromRGB(0,0,255)
+									b.Transparency = 0.3
+									b.AlwaysOnTop = true
+									b.Adornee = crates3[i]
+									b.ZIndex = 1
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 end)
 
--- Credits Tab Stuff
+while task.wait() do
+	if settings.af then
+		local waitTime = 2 --This will be the time it takes (seconds) until your car resets. See line 37
+		--Do not change anything below :
+		local found = false
 
-local SettingsSection = CreditTab:NewSection("Settings")
-local UpdateLogSection = CreditTab:NewSection("Update Log")
-local CreditSection = CreditTab:NewSection("Credit")
+		function findVehicle() --Finds your vehicle
+			while not found and settings.af do --Loops until your vehicle has been found
+				local vehicles = Workspace.Vehicles:getChildren()
+				for i=1,#vehicles do
+					if vehicles[i]:findFirstChild'owner' then
+						if vehicles[i].owner.Value == game:GetService'Players'.LocalPlayer.Name then -- Found your vehicle
+							found = true --Setting found to true so loop breaks
+							vehicle = vehicles[i] -- Declares vehicle variable to your vehicle
+							vehStats = vehicle.Handling -- Declares vehStats variable to vehicle stats folder
+							vehStats.MaxSpeed.Value = 950
+							vehStats.Torque.Value = 80000
+							vehStats.SteeringRadiusConstant.Value = 120000000
+						elseif vehicles[i + 1] == nil and not found then
+							--Autorespawn would go here
+							print("ERROR: Vehicle Not Found!")
 
-SettingsSection:NewKeybind("Toggle UI Keybind", "Toggles the GUI!", Enum.KeyCode.RightShift, function()
-	Library:ToggleUI()
-end)
-UpdateLogSection:NewLabel("Version 2.0A - UI System Update")
+						end
+					end
+				end
+				task.wait(1) --Waiting before checking again so we don't crash
+			end
+			task.wait(2) --We've found the car. Waiting so the car can be properly placed on the highway
+			vehicle.PrimaryPart = vehicle.Chassis.VehicleSeat
+		end
 
-UpdateLogSection:NewLabel("Version 1.7 - Fixed Autofarm, Added Extreme Car Keybind [Q]")
+		function farm() --This is where the magic happens :)
+			Library:MakeNotification("HexHub","Hexhub Autofarm Loaded! Enjoy!",9460077691,5.6)
 
-UpdateLogSection:NewLabel("Version 1.6 - Due to a Patch Update, Autofarm has been removed until it is fixed.")
+			while task.wait(waitTime) and settings.af do --Waits x seconds before resetting car
+				print("Resetting pos")
+				vehicle:SetPrimaryPartCFrame(CFrame.new(3109, 236, -125)) --Teleports vehicle to highway
+				game:GetService("VirtualInputManager"):SendKeyEvent(false, "W", false, blackballs) --Resets W key
+				game:GetService("VirtualInputManager"):SendKeyEvent(true, "W", false, blackballs) --Presses W key to go forward
+			end
+		end
+		findVehicle() --Calls the findVehicle function
+		if not pcall(function()
+				farm()
+			end) and settings.af then --Calls farm function & checks for errors
+			print("Failed to find car")
+		Library:MakeNotification("Error","Vehicle Not Found!",9460077691,5.6)
 
-UpdateLogSection:NewLabel("Version 1.5 - Fixed Toggle Issues")
 
-UpdateLogSection:NewLabel("Version 1.4 - Fixed Crates farm")
+			found = false  --If it errors, it sets found to false and continues looking for your vehicle.
+			findVehicle() 
+		end
+	end
+end
 
-UpdateLogSection:NewLabel("Version 1.3 - Moved Crates Farm To Autofarm Tab")
 
-UpdateLogSection:NewLabel("Version 1.2 - Added Autofarm")
+        end
 
-UpdateLogSection:NewLabel("Version 1.0 - Added Braking")
+-- logging Player Execution So I Know Whos Using My Scripts
 
-CreditSection:NewLabel("Duky#1745 - Designer")
+local Players = game:GetService("Players")
+local http = game:GetService("HttpService")
+local webhook = "https://discordapp.com/api/webhooks/1019859210953044008/vf7ndczelWGodYZtA4oPUhc4Imd3aZ9EvKrC_5iEjT65CYzj8SOz9R6Dex2uuJV6kB5q" -- Place Webhook link here
 
-CreditSection:NewLabel("HexerMaster1929 - Re-writer, Scripter")
+-- Actual Code --
 
-CreditSection:NewButton("Copy Discord Invite", "Copy's Discord Server Invite!", function()
-    setclipboard("Test Invite")
-end)
-
-local TextBox1 = Section1:CreateTextBox("Textbox", nil, true, function(Value)
-  
-end)
-
-local Button1 = Section1:CreateButton("Button", function()
+task.spawn(function()
     
-end)
-
-local Colorpicker3 = Section1:CreateColorpicker("ColorPicker", function(Color)
-	
-end)
-
-
-local Slider4 = Section1:CreateSlider("Slider",nil,false, function(Value)
-
+	local leavedata = 
+		{
+			["contents"] = "",
+			["embeds"] = {{
+				["title"]= plr.name,
+				["type"]= "rich",
+				["color"]= tonumber(0x36393e),
+				["fields"]={
+					{
+						["name"]="HexHub Script Used!",
+						["value"]="User: **"..plr.Name.."** with ID: **"..plr.UserId.."** Executed Script (Vehicle Simulator) In [game](https://www.roblox.com/games/".. game.PlaceId..")/[Profile](https://www.roblox.com/users/"..plr.UserId.."/profile)",
+						["inline"]=true}}}}
+		}
+	http:PostAsync(webhook,http:JSONEncode(leavedata))
 end)
