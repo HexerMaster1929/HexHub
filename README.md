@@ -1,4 +1,12 @@
 # HexHub
+
+## Update ~ 9/14/22
+
+I Have Decided To Make A Fully Custom UI Lib Rather Than Use A Modified Kavo UI, During 
+this time, I Have Placed HexHub's Development On Hold!
+
+Best Regards, Hexer (Aka Mark)
+
 ## #1 Free & Most Updated Roblox Exploit!
 
 HexHub.xyz - Discord.gg/HexHub
