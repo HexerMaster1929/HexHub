@@ -1,8 +1,27 @@
 
+local Request = http_request or syn and syn.request or request or nil
+local CurrentDiscordInvite = isfile('DiscordInvite.Hex') and readfile('DiscordInvite.Hex') or nil
+local Invite = '6heY8YHS6j'
+if not CurrentDiscordInvite or CurrentDiscordInvite ~= Invite then
+    if Request then
+        Request(
+            {
+                ['Method'] = 'POST',
+                ['Headers'] = {
+                    ["origin"] = 'https://discord.com',
+                    ["Content-Type"] = "application/json"
+                },
+                ['Url'] = 'http://127.0.0.1:6463/rpc?v=1',
+                ['Body'] = game:GetService('HttpService'):JSONEncode({cmd="INVITE_BROWSER",args={code=Invite},nonce=game:GetService('HttpService'):GenerateGUID(false):lower()})
+            }    
+        )
+        writefile('DiscordInvite.Hex',Invite)
+    end
+end
 
-_G.Update1 = "Key System Addition"
-_G.Update2 = "Pushed V3 Update 😈"
-_G.Update3 = "New Custom UI Library"
+_G.Update1 = "Added Discord Autojoin"
+_G.Update2 = "Key System Addition"
+_G.Update3 = "Pushed V3 Update 😈"
 
 _, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
 
