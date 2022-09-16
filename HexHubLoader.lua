@@ -1,8 +1,8 @@
 
 
-_G.Update1 = "Pushed V3 Update 😈"
-_G.Update2 = "New Custom UI Library"
-_G.Update3 = "New V3 Loader"
+_G.Update1 = "Key System Addition"
+_G.Update2 = "Pushed V3 Update 😈"
+_G.Update3 = "New Custom UI Library"
 
 _, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
 
