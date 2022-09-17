@@ -1,3 +1,5 @@
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoader.lua", true))()
+
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/NewUI.lua"))()
 
@@ -6,14 +8,15 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Hexer
 loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/CurrentVersion"))() -- Getting Version
 
 
-local ScriptVer = "3.1"
+--[[local ScriptVer = "3.1"
 
 if _G.HexHubVer ~= ScriptVer then
-	Lib:MakeNotification("HexHub Version Error","Version "..ScriptVer..", OUTDATED!","9460077691",5.1)
+	Lib:MakeNotification("HexHub Version Error","Version "..ScriptVer..". OUTDATED!","9460077691",5.1)
 elseif _G.HexHubVer == ScriptVer then
-	Lib:MakeNotification("HexHub Version","Version "..ScriptVer..", Up To Date!","9460077691",5.1)
+	Lib:MakeNotification("HexHub Version","Version "..ScriptVer..". Up To Date!","9460077691",5.1)
 end
 
+]]--
 -- HexHub UI Notifs: Loaded Notification
 wait(0.9)
 
