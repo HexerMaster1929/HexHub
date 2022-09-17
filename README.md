@@ -1,5 +1,7 @@
 # HexHub
 
+![HexHub Banner](https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubBanner2.png)
+
 ## Update ~ 9/15/22
 
 HexHub's Brand New Made From Scrach UI Is Out!
