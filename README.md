@@ -24,17 +24,22 @@ If you would like to try hexHub legacy, We will continue to update that until th
 
 ### Versions
 
+## V3 (Live) 
+
+V3 will be featuring: New Custom UI Library , New Loader, Complete Exploit Re-Write, Key System, And Much More!!
+
+
 ## V2 
 
-V2 will be featuring: New Custom UI Library, New FP Games, Complete Exploit Re-Write, And Much More!!
+~~V2 will be featuring: New PreMade UI Library, New FP Games, Complete Exploit Re-Write, And Much More!!~~
 
-> V2 is Now Live!
+> V3 is Now Live!
 
 ## V1
 
 ~~V1 is the current Newest Version Of HexHub, With daily Updates!~~
 
-> V2 is Now Live!
+> V3 is Now Live!
 
 ## Legacy
 
