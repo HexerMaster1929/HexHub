@@ -1,22 +1,22 @@
 local Lib = {}
 
 local uiclicksfx = Instance.new("Sound")
-		uiclicksfx.PlaybackSpeed = 1.75
-		uiclicksfx.RollOffMaxDistance = 24
-		uiclicksfx.SoundId = "rbxassetid://144130810"
-		uiclicksfx.Name = "UICLICKSFX"
-		uiclicksfx.Parent = workspace
+uiclicksfx.PlaybackSpeed = 1.75
+uiclicksfx.RollOffMaxDistance = 24
+uiclicksfx.SoundId = "rbxassetid://144130810"
+uiclicksfx.Name = "UICLICKSFX"
+uiclicksfx.Parent = workspace
 
-		local tremolo_effect = Instance.new("TremoloSoundEffect")
-		tremolo_effect.Name = "TremoloEffect"
-		tremolo_effect.Parent = uiclicksfx
-		
-		ButtonAudioToggle = true
+local tremolo_effect = Instance.new("TremoloSoundEffect")
+tremolo_effect.Name = "TremoloEffect"
+tremolo_effect.Parent = uiclicksfx
+
+ButtonAudioToggle = true
 
 function ButtonSFX()
 	if ButtonAudioToggle then
-	uiclicksfx:Play()
-end
+		uiclicksfx:Play()
+	end
 end
 
 local themes = {
@@ -49,10 +49,10 @@ local themeStyles = {
 		ElementColor = Color3.fromRGB(170, 170, 255)
 	},
 	GrapeTheme = {
-		
+
 	},
 	Ocean = {
-		
+
 	},
 	Midnight = {
 		BackgroundDarker = Color3.fromRGB(26, 189, 158),
@@ -62,7 +62,7 @@ local themeStyles = {
 		ElementColor = Color3.fromRGB(52, 74, 95)
 	},
 	Sentinel = {
-		
+
 	}
 }
 
@@ -213,7 +213,7 @@ function Lib:MakeNotification(Title,Desc,Icon,NotificationTime)
 end
 
 function Lib.CreateWindow(WindowName)
-	
+
 	local hexhub_v3 = Instance.new("ScreenGui")
 	hexhub_v3.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	hexhub_v3.Name = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
@@ -226,7 +226,7 @@ function Lib.CreateWindow(WindowName)
 	hexhub_frame.Size = UDim2.new(0, 631, 0, 378)
 	hexhub_frame.Name = "HexHubFrame"
 	hexhub_frame.Parent = hexhub_v3
-	
+
 	local settings_frame = Instance.new("Frame")
 	settings_frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	settings_frame.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -235,7 +235,7 @@ function Lib.CreateWindow(WindowName)
 	settings_frame.Name = "SettingsFrame"
 	settings_frame.Parent = hexhub_frame
 	settings_frame.Visible = false
-	
+
 	local click_sounds = Instance.new("Frame")
 	click_sounds.AnchorPoint = Vector2.new(0.5, 0.5)
 	click_sounds.BackgroundColor3 = Color3.new(0.666667, 0.666667, 1)
@@ -307,9 +307,9 @@ function Lib.CreateWindow(WindowName)
 	mark_beats_has_aids.Size = UDim2.new(0, 33, 0, 30)
 	mark_beats_has_aids.Name = "MarkBeatsHasAids"
 	mark_beats_has_aids.Parent = sounds_toggle_clickable
-	
-	
-	
+
+
+
 	mark_beats_has_aids.MouseButton1Down:Connect(function()
 		if ButtonAudioToggle then
 			ButtonAudioToggle = false
@@ -319,7 +319,7 @@ function Lib.CreateWindow(WindowName)
 			sounds_toggle_clickable:TweenPosition(UDim2.new(0.917, 0,0.497, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint,.15) 
 		end
 	end)
-	
+
 	local main_stroke = Instance.new("UIStroke")
 	main_stroke.Color = Color3.new(1, 1, 1)
 	main_stroke.Thickness = 2
@@ -551,7 +551,7 @@ function Lib.CreateWindow(WindowName)
 	uicorner_7.CornerRadius = UDim.new(0.05000000074505806, 15)
 	uicorner_7.Parent = theme_choose
 
-	
+
 
 	local text_label_4 = Instance.new("TextLabel")
 	text_label_4.Font = Enum.Font.Gotham
@@ -712,34 +712,34 @@ function Lib.CreateWindow(WindowName)
 	local uicorner_10 = Instance.new("UICorner")
 	uicorner_10.CornerRadius = UDim.new(0.05000000074505806, 10)
 	uicorner_10.Parent = open
-	
-	lib_title.Text = WindowName
-	
-local function ShowUI()
-	hexhub_frame.Visible = true
-	hexhub_frame:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
-	open:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
-	wait(.5)
-	open.Visible = false
-end
 
-local function HideUI()
-	hexhub_frame:TweenPosition(UDim2.new(0.5, 0, 1.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
-	wait(.5)
-	hexhub_frame.Visible = false
-	open.Visible = true
-	wait(.5)
-		open:TweenSize(UDim2.new(0, 34, 0, 34), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
-		
+	lib_title.Text = WindowName
+
+	local function ShowUI()
+		hexhub_frame.Visible = true
+		hexhub_frame:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
+		open:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
+		wait(.5)
+		open.Visible = false
 	end
-	
+
+	local function HideUI()
+		hexhub_frame:TweenPosition(UDim2.new(0.5, 0, 1.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
+		wait(.5)
+		hexhub_frame.Visible = false
+		open.Visible = true
+		wait(.5)
+		open:TweenSize(UDim2.new(0, 34, 0, 34), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
+
+	end
+
 	open.MouseButton1Down:Connect(function()
 		ButtonSFX()
 		ShowUI()
-		
+
 	end)
 
-local UIS = game:GetService("UserInputService")
+	local UIS = game:GetService("UserInputService")
 
 	function Lib:DraggingEnabled(frame, parent)
 
@@ -780,53 +780,53 @@ local UIS = game:GetService("UserInputService")
 	Lib:DraggingEnabled(hexhub_frame, hexhub_frame)
 
 
-local SettingToggleKeyBind = false
+	local SettingToggleKeyBind = false
 
-local UIToggled = true
+	local UIToggled = true
 
-local TogglekeyBind = Enum.KeyCode.RightControl
+	local TogglekeyBind = Enum.KeyCode.RightControl
 
-keybind_button.MouseButton1Down:Connect(function()
+	keybind_button.MouseButton1Down:Connect(function()
 		ButtonSFX()
 		if SettingToggleKeyBind == false then 
-		SettingToggleKeyBind = true
+			SettingToggleKeyBind = true
 			kbtext.Text = "..."
-			
-		end
-end)
 
-UIS.InputBegan:Connect(function(Input)
+		end
+	end)
+
+	UIS.InputBegan:Connect(function(Input)
 		if SettingToggleKeyBind == true then
 			if Input.KeyCode ~= Enum.KeyCode.Unknown then
 				TogglekeyBind = Input.KeyCode
 				kbtext.Text = UIS:GetStringForKeyCode(Input.KeyCode)
 				SettingToggleKeyBind = false
-				
-				end
+
+			end
 		end
-			
-			if Input.KeyCode == TogglekeyBind then
-				if UIToggled then
+
+		if Input.KeyCode == TogglekeyBind then
+			if UIToggled then
 				HideUI()
 				UIToggled = false
 			elseif not UIToggled then
 				ShowUI()
 				UIToggled = true
-					end
-		      end
-	 
+			end
+		end
+
 	end)
-	
+
 	close.MouseButton1Down:Connect(function()
 		ButtonSFX()
 		if UIToggled then
 			HideUI()
 		end
 	end)
-	
-	
 
-	
+
+
+
 	settingsButton.MouseButton1Down:Connect(function()
 		ButtonSFX()
 		if settings_frame.Visible == false then
@@ -839,63 +839,63 @@ UIS.InputBegan:Connect(function(Input)
 			settings_frame.Visible = false
 		end
 	end)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-local Tabs = {}
+
+
+
+
+
+
+
+
+
+
+	local Tabs = {}
 
 	function Tabs:NewTab(TabName)
-		
-	print("Tab")
-	
-	
-	local TabButton = Instance.new("TextButton")
-	TabButton.Font = Enum.Font.SourceSans
-	TabButton.Text = ""
-	TabButton.TextColor3 = Color3.new(0, 0, 0)
-	TabButton.TextSize = 14
-	TabButton.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
-	TabButton.Position = UDim2.new(-0.615384579, 0, 0.0553646423, 0)
-	TabButton.Size = UDim2.new(0, 115, 0, 40)
-	TabButton.Name = "Tab1"
+
+		print("Tab")
+
+
+		local TabButton = Instance.new("TextButton")
+		TabButton.Font = Enum.Font.SourceSans
+		TabButton.Text = ""
+		TabButton.TextColor3 = Color3.new(0, 0, 0)
+		TabButton.TextSize = 14
+		TabButton.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
+		TabButton.Position = UDim2.new(-0.615384579, 0, 0.0553646423, 0)
+		TabButton.Size = UDim2.new(0, 115, 0, 40)
+		TabButton.Name = "Tab1"
 		TabButton.Parent = buttons
 
-	local uistroke = Instance.new("UIStroke")
-	uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	uistroke.Color = Color3.new(1, 1, 1)
-	uistroke.Thickness = 2
-	uistroke.Parent = TabButton
+		local uistroke = Instance.new("UIStroke")
+		uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		uistroke.Color = Color3.new(1, 1, 1)
+		uistroke.Thickness = 2
+		uistroke.Parent = TabButton
 
-	local uicorner = Instance.new("UICorner")
-	uicorner.CornerRadius = UDim.new(0.05000000074505806, 15)
-	uicorner.Parent = TabButton
+		local uicorner = Instance.new("UICorner")
+		uicorner.CornerRadius = UDim.new(0.05000000074505806, 15)
+		uicorner.Parent = TabButton
 
-	local uigradient = Instance.new("UIGradient")
-	uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.639216, 0.639216, 0.639216))})
-	uigradient.Rotation = 180
-	uigradient.Parent = TabButton
+		local uigradient = Instance.new("UIGradient")
+		uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.639216, 0.639216, 0.639216))})
+		uigradient.Rotation = 180
+		uigradient.Parent = TabButton
 
-	local text_label = Instance.new("TextLabel")
-	text_label.Font = Enum.Font.Gotham
-	text_label.Text = TabName
-	text_label.TextColor3 = Color3.new(1, 1, 1)
-	text_label.TextScaled = true
-	text_label.TextSize = 14
-	text_label.TextWrapped = true
-	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-	text_label.BackgroundTransparency = 1
-	text_label.Position = UDim2.new(0.113167681, 0, 0.140872955, 0)
-	text_label.Size = UDim2.new(0, 87, 0, 28)
+		local text_label = Instance.new("TextLabel")
+		text_label.Font = Enum.Font.Gotham
+		text_label.Text = TabName
+		text_label.TextColor3 = Color3.new(1, 1, 1)
+		text_label.TextScaled = true
+		text_label.TextSize = 14
+		text_label.TextWrapped = true
+		text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+		text_label.BackgroundTransparency = 1
+		text_label.Position = UDim2.new(0.113167681, 0, 0.140872955, 0)
+		text_label.Size = UDim2.new(0, 87, 0, 28)
 		text_label.Parent = TabButton
-		
+
 
 		local NewTabFrame = Instance.new("ScrollingFrame")
 		NewTabFrame.BottomImage = "rbxassetid://3062505976"
@@ -921,18 +921,18 @@ local Tabs = {}
 		uipadding.PaddingLeft = UDim.new(0.008999999612569809, 0)
 		uipadding.PaddingTop = UDim.new(0.009999999776482582, 0)
 		uipadding.Parent = NewTabFrame
-		
-		
-		
-		
+
+
+
+
 		local function UpdateTabSize()
 			local cS = TabFrameListLayout.AbsoluteContentSize
-			
+
 			game.TweenService:Create(NewTabFrame, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 				CanvasSize = UDim2.new(0,0,0,cS.Y + cS.X)
 			}):Play()
 		end
-		
+
 		local function UpdateTabSectPos(Type,SectName)
 
 			if Type == 1 then
@@ -951,33 +951,33 @@ local Tabs = {}
 				end
 			end
 		end
-		
+
 		TabButton.MouseButton1Down:Connect(function()
 			ButtonSFX()
 			for i,v in next, main_frame:GetChildren() do
 				if v:IsA("UICorner") or v:IsA("UIScale") or v:IsA("UIListLayout") or v:IsA("UIStroke") or v:IsA("UIGradient") then 
-					
+
 					print("Attempted To Close A Non Closeable Item (Normal Error)")
-						else
+				else
 					v.Visible = false
-						
+
 				end
-				
-				
+
+
 			end
-			
+
 			main_frame:FindFirstChild(tostring(TabName)).Visible = true
 		end)
-		
-		
-		local Sections = {}
-		
-	function Sections:NewSection(NewSectName)
-		
-		print("Section")
 
-		
-		local NewSectFrame = Instance.new("Frame")
+
+		local Sections = {}
+
+		function Sections:NewSection(NewSectName)
+
+			print("Section")
+
+
+			local NewSectFrame = Instance.new("Frame")
 			NewSectFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 			NewSectFrame.BackgroundColor3 = Color3.new(0.666667, 0.666667, 1)
 			NewSectFrame.BackgroundTransparency = 0.949999988079071
@@ -986,25 +986,25 @@ local Tabs = {}
 			NewSectFrame.Name = "Section1"
 			NewSectFrame.Parent = NewTabFrame
 			NewSectFrame.ZIndex = 9e9
-			
+
 			UpdateTabSize()
 
-		local section_name = Instance.new("TextLabel")
-		section_name.Font = Enum.Font.Gotham
-		section_name.Text = NewSectName
-		section_name.TextColor3 = Color3.new(1, 1, 1)
-		section_name.TextScaled = true
-		section_name.TextSize = 14
-		section_name.TextWrapped = true
-		section_name.TextXAlignment = Enum.TextXAlignment.Left
-		section_name.BackgroundColor3 = Color3.new(1, 1, 1)
-		section_name.BackgroundTransparency = 1
-		section_name.Position = UDim2.new(0.0426113009, 0, 0.209072053, 0)
-		section_name.Size = UDim2.new(0, 307, 0, 28)
-		section_name.Name = "SectionName"
+			local section_name = Instance.new("TextLabel")
+			section_name.Font = Enum.Font.Gotham
+			section_name.Text = NewSectName
+			section_name.TextColor3 = Color3.new(1, 1, 1)
+			section_name.TextScaled = true
+			section_name.TextSize = 14
+			section_name.TextWrapped = true
+			section_name.TextXAlignment = Enum.TextXAlignment.Left
+			section_name.BackgroundColor3 = Color3.new(1, 1, 1)
+			section_name.BackgroundTransparency = 1
+			section_name.Position = UDim2.new(0.0426113009, 0, 0.209072053, 0)
+			section_name.Size = UDim2.new(0, 307, 0, 28)
+			section_name.Name = "SectionName"
 			section_name.Parent = NewSectFrame
 
-		local SectionToggle = Instance.new("ImageButton")
+			local SectionToggle = Instance.new("ImageButton")
 			SectionToggle.Image = "rbxassetid://10912985700"
 			SectionToggle.BackgroundColor3 = Color3.new(1, 1, 1)
 			SectionToggle.BackgroundTransparency = 1
@@ -1013,81 +1013,81 @@ local Tabs = {}
 			SectionToggle.Name = "OpenButton"
 			SectionToggle.Parent = NewSectFrame
 
-		local section_main_piece = Instance.new("Frame")
-		section_main_piece.AnchorPoint = Vector2.new(0.5, 0)
-		section_main_piece.BackgroundColor3 = Color3.new(0.666667, 0.666667, 1)
-		section_main_piece.ClipsDescendants = false
-		section_main_piece.Position = UDim2.new(0.5, 0, 0, 0)
-		section_main_piece.Size = UDim2.new(0, 383, 0, 54)
-		section_main_piece.ZIndex = 0
-		section_main_piece.Name = "SectionMainPiece"
+			local section_main_piece = Instance.new("Frame")
+			section_main_piece.AnchorPoint = Vector2.new(0.5, 0)
+			section_main_piece.BackgroundColor3 = Color3.new(0.666667, 0.666667, 1)
+			section_main_piece.ClipsDescendants = false
+			section_main_piece.Position = UDim2.new(0.5, 0, 0, 0)
+			section_main_piece.Size = UDim2.new(0, 383, 0, 54)
+			section_main_piece.ZIndex = 0
+			section_main_piece.Name = "SectionMainPiece"
 			section_main_piece.Parent = NewSectFrame
 
-		local uistroke = Instance.new("UIStroke")
-		uistroke.Color = Color3.new(1, 1, 1)
-		uistroke.Thickness = 2
-		uistroke.Parent = section_main_piece
+			local uistroke = Instance.new("UIStroke")
+			uistroke.Color = Color3.new(1, 1, 1)
+			uistroke.Thickness = 2
+			uistroke.Parent = section_main_piece
 
-		local uicorner = Instance.new("UICorner")
-		uicorner.CornerRadius = UDim.new(0.05000000074505806, 15)
-		uicorner.Parent = section_main_piece
+			local uicorner = Instance.new("UICorner")
+			uicorner.CornerRadius = UDim.new(0.05000000074505806, 15)
+			uicorner.Parent = section_main_piece
 
-		local section_obj_holder = Instance.new("ScrollingFrame")
-		section_obj_holder.BottomImage = "rbxassetid://3062505976"
-		section_obj_holder.CanvasSize = UDim2.new(0, 0, 0, 0)
-		section_obj_holder.MidImage = "rbxassetid://3062506202"
-		section_obj_holder.TopImage = "rbxassetid://3062506445"
-		section_obj_holder.Active = true
-		section_obj_holder.BackgroundColor3 = Color3.new(1, 1, 1)
-		section_obj_holder.BackgroundTransparency = 1
-		section_obj_holder.Position = UDim2.new(0.0419999957, 0, 0.282282114, 0)
-		section_obj_holder.Size = UDim2.new(0, 351, 0, 156)
-		section_obj_holder.Name = "SectionObjHolder"
+			local section_obj_holder = Instance.new("ScrollingFrame")
+			section_obj_holder.BottomImage = "rbxassetid://3062505976"
+			section_obj_holder.CanvasSize = UDim2.new(0, 0, 0, 0)
+			section_obj_holder.MidImage = "rbxassetid://3062506202"
+			section_obj_holder.TopImage = "rbxassetid://3062506445"
+			section_obj_holder.Active = true
+			section_obj_holder.BackgroundColor3 = Color3.new(1, 1, 1)
+			section_obj_holder.BackgroundTransparency = 1
+			section_obj_holder.Position = UDim2.new(0.0419999957, 0, 0.282282114, 0)
+			section_obj_holder.Size = UDim2.new(0, 351, 0, 156)
+			section_obj_holder.Name = "SectionObjHolder"
 			section_obj_holder.Parent = section_main_piece
 			section_obj_holder.Visible = false
 
-		local SectionOBJHList = Instance.new("UIListLayout")
+			local SectionOBJHList = Instance.new("UIListLayout")
 			SectionOBJHList.Padding = UDim.new(0,10)
 			SectionOBJHList.SortOrder = Enum.SortOrder.LayoutOrder
 			SectionOBJHList.HorizontalAlignment = Enum.HorizontalAlignment.Left
 			SectionOBJHList.Parent = section_obj_holder
 
-		local uipadding = Instance.new("UIPadding")
-		uipadding.PaddingLeft = UDim.new(0.007, 0)
-		uipadding.PaddingTop = UDim.new(0.03999999910593033, 0)
+			local uipadding = Instance.new("UIPadding")
+			uipadding.PaddingLeft = UDim.new(0.007, 0)
+			uipadding.PaddingTop = UDim.new(0.03999999910593033, 0)
 			uipadding.Parent = section_obj_holder
-			
-			
-			
+
+
+
 			local function UpdateSectionSize()
 				local cS = SectionOBJHList.AbsoluteContentSize
-				
+
 				SectionOBJHList.Padding = UDim.new(0, TabFrameListLayout.Padding.Offset - .12)
-				
+
 				game.TweenService:Create(section_obj_holder, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 					CanvasSize = UDim2.new(0,0,0,cS.Y + 50)
 				}):Play()
 			end
-			
-			
-			
+
+
+
 			SectionToggle.MouseButton1Down:Connect(function()
 				ButtonSFX()
 				if section_obj_holder.Visible == false then
 					NewSectFrame.ZIndex = 1
-				game.TweenService:Create(SectionToggle, TweenInfo.new(.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
-					Rotation = 180
-				}):Play()
-					
+					game.TweenService:Create(SectionToggle, TweenInfo.new(.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+						Rotation = 180
+					}):Play()
+
 					game.TweenService:Create(section_main_piece, TweenInfo.new(.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
 						Size = UDim2.new(0, 383,0, 236)
 
 					}):Play()
 
 
-					
+
 					wait(.15)
-					
+
 					section_obj_holder.Visible = true
 					--UpdateTabSectPos(1,NewSectName)
 					for i, SectOBJ in pairs(NewTabFrame:GetChildren()) do
@@ -1097,22 +1097,22 @@ local Tabs = {}
 						end
 					end
 					UpdateSectionSize()
-					
+
 				elseif section_obj_holder.Visible == true then
 					section_obj_holder.Visible = false
 					wait(.15)
 					game.TweenService:Create(SectionToggle, TweenInfo.new(.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
 						Rotation = 0
 					}):Play()
-					
-					
-					
+
+
+
 					game.TweenService:Create(section_main_piece, TweenInfo.new(.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
 						Size = UDim2.new(0, 383,0, 54)
 					}):Play()
 
 					NewSectFrame.ZIndex = 9e9
-					
+
 					UpdateTabSize()
 					--UpdateTabSectPos(2,NewSectName)
 					for i, SectOBJ in pairs(NewTabFrame:GetChildren()) do
@@ -1121,19 +1121,19 @@ local Tabs = {}
 							SectOBJ:TweenPosition(UDim2.new(SectOBJ.Position.X.Scale, SectOBJ.Position.X.Offset,NewTabFrame.Position.Y.Scale, NewTabFrame.Position.Y.Offset - NewSectName.Size.Y.Offset), Enum.EasingDirection.Out, Enum.EasingStyle.Quint)
 						end
 					end
-					
-					
+
+
 				end
 			end)
-			
 
-	
-		
-		local Elements = {}
-		
-		function Elements:NewButton(SideText,ButtonText,callback)
-			callback = callback or function() end
-			
+
+
+
+			local Elements = {}
+
+			function Elements:NewButton(SideText,ButtonText,callback)
+				callback = callback or function() end
+
 				local new_button = Instance.new("Frame")
 				new_button.AnchorPoint = Vector2.new(0.5, 0.5)
 				new_button.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -1205,20 +1205,20 @@ local Tabs = {}
 				button_text.Size = UDim2.new(0, 121, 0, 27)
 				button_text.Name = "ButtonText"
 				button_text.Parent = main_button
-			
-			
-			UpdateSectionSize()
-		
+
+
+				UpdateSectionSize()
+
 				main_button.MouseButton1Down:Connect(function()
 					ButtonSFX()
 					callback()
 				end)
-				
-				
-			
-		end
-		
-		
+
+
+
+			end
+
+
 			function Elements:NewLabel(LabelText)
 				local NewLabel = Instance.new("Frame")
 				NewLabel.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -1250,11 +1250,11 @@ local Tabs = {}
 				uistroke.Color = Color3.new(1, 1, 1)
 				uistroke.Thickness = 2
 				uistroke.Parent = NewLabel
-				
+
 				UpdateSectionSize()
-				
+
 			end
-		
+
 			function Elements:NewToggle(ToggleName,callback)
 
 				callback = callback or function() end
@@ -1332,7 +1332,7 @@ local Tabs = {}
 				toggleBtN.Size = UDim2.new(0, 95, 0, 30)
 				toggleBtN.Name = "ToggleBTN"
 				toggleBtN.Parent = toggle_button
-				
+
 				UpdateSectionSize()
 
 				local NewToggle_Toggled = false
@@ -1352,9 +1352,358 @@ local Tabs = {}
 
 			end
 			
+			function Elements:NewColorPicker(CPTitle,DefaultColor,callback)
+				CPTitle = CPTitle or "ColorPicker"
+				callback = callback or function() end
+				DefaultColor = DefaultColor or Color3.fromRGB(1,1,1)
+
+				local color_picker1 = Instance.new("Frame")
+				color_picker1.AnchorPoint = Vector2.new(0.5, 0.5)
+				color_picker1.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
+				color_picker1.Position = UDim2.new(0.805724263, 0, 0.629090011, 0)
+				color_picker1.Size = UDim2.new(0, 333,0, 45)
+				color_picker1.Name = CPTitle
+				color_picker1.Parent = section_obj_holder
+
+				local uicorner = Instance.new("UICorner")
+				uicorner.CornerRadius = UDim.new(0.05000000074505806, 15)
+				uicorner.Parent = color_picker1
+
+				local cptitle = Instance.new("TextLabel")
+				cptitle.Font = Enum.Font.Gotham
+				cptitle.Text = CPTitle
+				cptitle.TextColor3 = Color3.new(1, 1, 1)
+				cptitle.TextScaled = true
+				cptitle.TextSize = 14
+				cptitle.TextWrapped = true
+				cptitle.BackgroundColor3 = Color3.new(1, 1, 1)
+				cptitle.BackgroundTransparency = 1
+				cptitle.Position = UDim2.new(0.031, 0,0.089, 0)
+				cptitle.Size = UDim2.new(0, 182, 0, 21)
+				cptitle.Name = "CPTitle"
+				cptitle.Parent = color_picker1
+
+				local uistroke = Instance.new("UIStroke")
+				uistroke.Color = Color3.new(1, 1, 1)
+				uistroke.Thickness = 2
+				uistroke.Parent = color_picker1
+
+				local ColorVal = Instance.new("TextLabel")
+				ColorVal.Font = Enum.Font.Gotham
+
+				ColorVal.TextColor3 = Color3.new(1, 1, 1)
+				ColorVal.TextScaled = true
+				ColorVal.TextSize = 14
+				ColorVal.TextWrapped = true
+				ColorVal.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorVal.BackgroundTransparency = 1
+				ColorVal.Position = UDim2.new(0.031, 0,0.556, 0)
+				ColorVal.Size = UDim2.new(0, 172, 0, 15)
+				ColorVal.Name = "Color"
+				ColorVal.Parent = color_picker1
+
+				local color_picker_button = Instance.new("ImageButton")
+				color_picker_button.Image = "rbxassetid://0"
+				color_picker_button.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_picker_button.Position = UDim2.new(0.732, 0,0.111, 0)
+				color_picker_button.Size = UDim2.new(0, 68, 0, 34)
+				color_picker_button.Name = "ColorPickerButton"
+				color_picker_button.Parent = color_picker1
+
+				local uicorner_2 = Instance.new("UICorner")
+				uicorner_2.CornerRadius = UDim.new(0, 7)
+				uicorner_2.Parent = color_picker_button
+
+				local handler = Instance.new("LocalScript")
+				handler.Name = "Handler"
+				handler.Parent = color_picker1
+
+				local cpframe = Instance.new("Frame")
+				cpframe.BackgroundColor3 = Color3.new(1, 1, 1)
+				cpframe.BackgroundTransparency = 1
+				cpframe.Position = UDim2.new(0.0300300308, 0, 0.258883238, 0)
+				cpframe.Size = UDim2.new(0, 313, 0, 146)
+				cpframe.Name = "CPFrame"
+				cpframe.Parent = color_picker1
+				cpframe.Visible = false
+
+				local color_picker_part = Instance.new("ImageButton")
+				color_picker_part.Image = "rbxassetid://6523286724"
+				color_picker_part.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_picker_part.ClipsDescendants = true
+				color_picker_part.Position = UDim2.new(0.566963315, 0, 0.0813447237, 0)
+				color_picker_part.Size = UDim2.new(0, 122, 0, 122)
+				color_picker_part.Name = "ColorPickerPart"
+				color_picker_part.Parent = cpframe
+
+				local uicorner_3 = Instance.new("UICorner")
+				uicorner_3.CornerRadius = UDim.new(0, 7)
+				uicorner_3.Parent = color_picker_part
+
+				local color_pickercursor = Instance.new("ImageLabel")
+				color_pickercursor.Image = "rbxassetid://4400698963"
+				color_pickercursor.ScaleType = Enum.ScaleType.Fit
+				color_pickercursor.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_pickercursor.BackgroundTransparency = 1
+				color_pickercursor.Position = UDim2.new(0.174180388, 0, 0.182500124, 0)
+				color_pickercursor.Size = UDim2.new(0, 19, 0, 19)
+				color_pickercursor.Name = "ColorPickerCursor"
+				color_pickercursor.Parent = color_picker_part
+
+				local darkness_picker_part = Instance.new("ImageButton")
+				darkness_picker_part.Image = "rbxassetid://0"
+				darkness_picker_part.BackgroundColor3 = Color3.new(1, 1, 1)
+				darkness_picker_part.ClipsDescendants = true
+				darkness_picker_part.Position = UDim2.new(0.420797825, 0, 0.0861551762, 0)
+				darkness_picker_part.Size = UDim2.new(0, 40, 0, 120)
+				darkness_picker_part.Name = "DarknessPickerPart"
+				darkness_picker_part.Parent = cpframe
+
+				local uicorner_4 = Instance.new("UICorner")
+				uicorner_4.CornerRadius = UDim.new(0, 7)
+				uicorner_4.Parent = darkness_picker_part
+
+				local darkness_picker_cursor = Instance.new("ImageLabel")
+				darkness_picker_cursor.Image = "rbxassetid://4400698963"
+				darkness_picker_cursor.ScaleType = Enum.ScaleType.Fit
+				darkness_picker_cursor.AnchorPoint = Vector2.new(0.5, 0.5)
+				darkness_picker_cursor.BackgroundColor3 = Color3.new(1, 1, 1)
+				darkness_picker_cursor.BackgroundTransparency = 1
+				darkness_picker_cursor.Position = UDim2.new(0.494963527, 0, 0.8578403, 0)
+				darkness_picker_cursor.Size = UDim2.new(0, 19, 0, 19)
+				darkness_picker_cursor.Name = "DarknessPickerCursor"
+				darkness_picker_cursor.Parent = darkness_picker_part
+
+				local uigradient = Instance.new("UIGradient")
+				uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0, 0, 0)), ColorSequenceKeypoint.new(1, Color3.new(1, 1, 1))})
+				uigradient.Rotation = -90
+				uigradient.Parent = darkness_picker_part
+
+				local color_h = Instance.new("TextLabel")
+				color_h.Font = Enum.Font.Gotham
+				color_h.Text = "H: 1"
+				color_h.TextColor3 = Color3.new(1, 1, 1)
+				color_h.TextScaled = true
+				color_h.TextSize = 14
+				color_h.TextWrapped = true
+				color_h.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_h.BackgroundTransparency = 1
+				color_h.Position = UDim2.new(0.0360296778, 0, 0.113097325, 0)
+				color_h.Size = UDim2.new(0, 111, 0, 26)
+				color_h.Name = "ColorH"
+				color_h.Parent = cpframe
+
+				local color_s = Instance.new("TextLabel")
+				color_s.Font = Enum.Font.Gotham
+				color_s.Text = "S: 1"
+				color_s.TextColor3 = Color3.new(1, 1, 1)
+				color_s.TextScaled = true
+				color_s.TextSize = 14
+				color_s.TextWrapped = true
+				color_s.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_s.BackgroundTransparency = 1
+				color_s.Position = UDim2.new(0.0360296778, 0, 0.290443957, 0)
+				color_s.Size = UDim2.new(0, 111, 0, 26)
+				color_s.Name = "ColorS"
+				color_s.Parent = cpframe
+
+				local color_v = Instance.new("TextLabel")
+				color_v.Font = Enum.Font.Gotham
+				color_v.Text = "V: 1"
+				color_v.TextColor3 = Color3.new(1, 1, 1)
+				color_v.TextScaled = true
+				color_v.TextSize = 14
+				color_v.TextWrapped = true
+				color_v.BackgroundColor3 = Color3.new(1, 1, 1)
+				color_v.BackgroundTransparency = 1
+				color_v.Position = UDim2.new(0.0360296778, 0, 0.467790633, 0)
+				color_v.Size = UDim2.new(0, 111, 0, 26)
+				color_v.Name = "ColorV"
+				color_v.Parent = cpframe
+
+				local html = Instance.new("TextLabel")
+				html.Font = Enum.Font.Gotham
+				html.Text = "Html: "
+				html.TextColor3 = Color3.new(1, 1, 1)
+				html.TextScaled = true
+				html.TextSize = 14
+				html.TextWrapped = true
+				html.BackgroundColor3 = Color3.new(1, 1, 1)
+				html.BackgroundTransparency = 1
+				html.Position = UDim2.new(0.0360296778, 0, 0.705569625, 0)
+				html.Size = UDim2.new(0, 111, 0, 26)
+				html.Name = "Html"
+				html.Parent = cpframe
+
+				local h, s, v = Color3.toHSV(DefaultColor)
+				local ms = game.Players.LocalPlayer:GetMouse()
+				local plr = game.Players.LocalPlayer
+				local mouse = plr:GetMouse()
+				local uis = game:GetService('UserInputService')
+				local rs = game:GetService("RunService")
+				local colorpicker = false
+				local darknesss = false
+				local dark = false
+				local rgb = color_picker_part 
+				local dark = darkness_picker_part  
+				local cursor = color_pickercursor
+				local cursor2 = darkness_picker_cursor
+				local color = {1,1,1}
+				local rainbow = false
+				local rainbowconnection
+				local counter = 0
+
+				local ColorPickerOpen = false
+
+				color_picker_button.MouseButton1Down:Connect(function()
+					ButtonSFX()
+					if ColorPickerOpen then
+						cpframe.Visible = false
+						wait(.5)
+
+						game.TweenService:Create(cptitle, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.031, 0,0.089, 0)
+						}):Play()
+
+
+						game.TweenService:Create(ColorVal, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.031, 0,0.556, 0)
+						}):Play()
+
+						game.TweenService:Create(color_picker_button, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.732, 0,0.111, 0)
+						}):Play()
+
+						game.TweenService:Create(color_picker1, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Size = UDim2.new(0, 333,0, 45)
+						}):Play()
+
+						wait(.5)
+						color_picker1.AnchorPoint = Vector2.new(0.5, 0.5)
+						ColorPickerOpen = false
+UpdateSectionSize()
+					else
+
+						game.TweenService:Create(cptitle, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.031, 0,0.024, 0)
+						}):Play()
+
+
+						game.TweenService:Create(ColorVal, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.046, 0,0.159, 0)
+						}):Play()
+
+						game.TweenService:Create(color_picker_button, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Position = UDim2.new(0.732, 0,0.028, 0)
+						}):Play()
+
+						game.TweenService:Create(color_picker1, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Size = UDim2.new(0, 333,0, 197)
+						}):Play()
+
+						wait(.5)
+						color_picker1.AnchorPoint = Vector2.new(0.5, 0.13)
+						cpframe.Visible = true
+						ColorPickerOpen = true
+						UpdateSectionSize()
+					end
+
+				end)
+
+
+
+				local function ConvHex(color: Color3): string
+					return string.format("#%02X%02X%02X", color.R * 0xFF,
+						color.G * 0xFF, color.B * 0xFF)
+				end
+
+
+				local function ColorPick()
+					if colorpicker then
+						local ml = game.Players.LocalPlayer:GetMouse()
+						local x,y = ml.X - rgb.AbsolutePosition.X,ml.Y - rgb.AbsolutePosition.Y
+						local maxX,maxY = rgb.AbsoluteSize.X,rgb.AbsoluteSize.Y
+						if x<0 then x=0 end
+						if x>maxX then x=maxX end
+						if y<0 then y=0 end
+						if y>maxY then y=maxY end
+						x = x/maxX
+						y = y/maxY
+						local cx = cursor.AbsoluteSize.X/2
+						local cy = cursor.AbsoluteSize.Y/2
+						cursor.Position = UDim2.new(x,-cx,y,-cy)
+						color = {1-x,1-y,color[3]}
+						local realcolor = Color3.fromHSV(color[1],color[2],color[3])
+						color_picker_button.BackgroundColor3 = realcolor
+						html.Text = "Hex: "..ConvHex(realcolor)
+						color_h.Text = "H: "..color[1]
+						color_s.Text = "S: "..color[2]
+						color_v.Text = "V: "..color[3]
+						ColorVal.Text = tostring(realcolor)
+						callback(realcolor)
+					end
+					if darknesss then
+
+						local ml = game.Players.LocalPlayer:GetMouse()
+						local y = ml.Y - dark.AbsolutePosition.Y
+						local maxY = dark.AbsoluteSize.Y
+						if y<0 then y=0 end
+						if y>maxY then y=maxY end
+						y = y/maxY
+						local cy = cursor2.AbsoluteSize.Y/2
+						cursor2.Position = UDim2.new(0.5,0,y,-cy)
+						cursor2.ImageColor3 = Color3.fromHSV(0,0,y)
+						color = {color[1],color[2],1-y}
+						local realcolor = Color3.fromHSV(color[1],color[2],color[3])
+						color_picker_button.BackgroundColor3 = realcolor
+						html.Text = "Hex: "..ConvHex(realcolor)
+						color_h.Text = "H: "..color[1]
+						color_s.Text = "S: "..color[2]
+						color_v.Text = "V: "..color[3]
+						ColorVal.Text = tostring(realcolor)
+						callback(realcolor)
+					end
+				end
+
+				mouse.Move:connect(ColorPick)
+
+				rgb.MouseButton1Down:connect(function()
+					colorpicker=true
+				end)
+
+				dark.MouseButton1Down:connect(function()
+					darknesss=true
+				end)
+
+				game:GetService("UserInputService").InputEnded:Connect(function(input)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if darknesss then darknesss = false end
+						if colorpicker then colorpicker = false end
+					end
+				end)
+
+				local function setcolor(tbl)
+					print("ColorInfoSetLib")
+					local cx = cursor.AbsoluteSize.X/2
+					local cy = cursor.AbsoluteSize.Y/2
+					color = {tbl[1],tbl[2],tbl[3]}
+					cursor.Position = UDim2.new(color[1],-cx,color[2]-1,-cy)
+					cursor2.Position = UDim2.new(0.5,0,color[3]-1,-cy)
+					local realcolor = Color3.fromHSV(color[1],color[2],color[3])
+					color_picker_button.BackgroundColor3 = realcolor
+					html.Text = "Hex: "..ConvHex(realcolor)
+					color_h.Text = "H: "..color[1]
+					color_s.Text = "S: "..color[2]
+					color_v.Text = "V: "..color[3]
+					ColorVal.Text = tostring(realcolor)
+				end
+
+				setcolor({h,s,v})
+			end
+
 			function Elements:NewTextBox(TextboxName,TextboxPlaceHolderText,callback)
 				callback = callback or function() end
-				
+
 				local NewTextBoxFrame = Instance.new("Frame")
 				NewTextBoxFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 				NewTextBoxFrame.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -1413,25 +1762,25 @@ local Tabs = {}
 				local uicorner_2 = Instance.new("UICorner")
 				uicorner_2.CornerRadius = UDim.new(0.05000000074505806, 15)
 				uicorner_2.Parent = text_input_box
-				
+
 				UpdateSectionSize()
-				
+
 				text_input_box.FocusLost:Connect(function(EnterPressed)
-					
+
 					if EnterPressed then
 						callback(text_input_box.Text)
 						wait(0.18)
 						text_input_box.Text = ""  
 					end
 				end)
-				
-end
-	function Elements:NewSlider(SliderName,min,max,callback)
-				
+
+			end
+			function Elements:NewSlider(SliderName,min,max,callback)
+
 				local CurrentValue = 0
-				
+
 				callback = callback or function() end
-				
+
 				local slider1 = Instance.new("Frame")
 				slider1.AnchorPoint = Vector2.new(0.5, 0.5)
 				slider1.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -1516,9 +1865,9 @@ end
 				ValText.Size = UDim2.new(0, 100, 0, 18)
 				ValText.Name = "Value"
 				ValText.Parent = slider1
-		
-				
-				
+
+
+
 				local startXScale = -.05;
 				local endXScale = .95;
 				local mouse = game:GetService("Players").LocalPlayer:GetMouse()
@@ -1563,11 +1912,11 @@ end
 						keepUpdating = false;
 					end
 				end)
-				
-	end
-				
+
+			end
+
 			function Elements:NewKeybind(KeybindName,Keycode,callback)
-				
+
 				local keybind1 = Instance.new("Frame")
 				keybind1.AnchorPoint = Vector2.new(0.5, 0.5)
 				keybind1.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -1641,10 +1990,10 @@ end
 				KBBTN.Size = UDim2.new(0, 115, 0, 36)
 				KBBTN.Name = "KeybindButton"
 				KBBTN.Parent = KBF				
-				
+
 				local CurrentKeyBind = Keycode
 				local AwaitingKeyCodeInput = false
-				
+
 				KBTXT.Text = UIS:GetStringForKeyCode(Keycode)
 
 				KBBTN.MouseButton1Down:Connect(function()
@@ -1671,10 +2020,10 @@ end
 					end
 
 				end)
-				
+
 			end
-			
-	function Elements:NewDropdown(DropDownText,Tbl,callback)
+
+			function Elements:NewDropdown(DropDownText,Tbl,callback)
 				local dropdown = Instance.new("Frame")
 				dropdown.AnchorPoint = Vector2.new(0.5, 0.5)
 				dropdown.BackgroundColor3 = Color3.new(0.541176, 0.54902, 1)
@@ -1777,7 +2126,7 @@ end
 				local uicorner_3 = Instance.new("UICorner")
 				uicorner_3.CornerRadius = UDim.new(0.05000000074505806, 15)
 				uicorner_3.Parent = drop_part
-				
+
 				for i,v in pairs(Tbl) do
 					local dropdown_obj = Instance.new("TextButton")
 					dropdown_obj.Text = ""
@@ -1812,11 +2161,11 @@ end
 					dropdown_object_itile.Size = UDim2.new(0, 100, 0, 31)
 					dropdown_object_itile.Name = "DropDownObjectTitle"
 					dropdown_object_itile.Parent = dropdown_obj
-					
-					
-					
+
+
+
 					UpdateSectionSize()
-					
+
 					DropDownListLayout.Padding = UDim.new(0, DropDownListLayout.Padding.Offset + .7)
 					local ena = false
 
@@ -1826,11 +2175,11 @@ end
 							ena = true
 							section_obj_holder.ClipsDescendants = false
 							NewTabFrame.CanvasSize = UDim2.new(0,0,0,NewTabFrame.CanvasSize.Y.Offset +  DropDownListLayout.AbsoluteContentSize.Y - 70)
-						drop_part.Visible = true
+							drop_part.Visible = true
 							game.TweenService:Create(dropdown_tog, TweenInfo.new(0.3), {Rotation = -180}):Play()
 							game.TweenService:Create(drop_part, TweenInfo.new(0.3), {Size = UDim2.new(drop_part.Size.X.Scale, drop_part.Size.X.Offset,drop_part.Size.Y.Scale,drop_part.Size.Y.Offset + DropDownListLayout.AbsoluteContentSize.Y + 7 )}):Play()
 							game.TweenService:Create(section_main_piece, TweenInfo.new(0.3), {Size = UDim2.new(section_main_piece.Size.X.Scale, section_main_piece.Size.X.Offset,section_main_piece.Size.Y.Scale,section_main_piece.Size.Y.Offset + drop_part.Size.Y.Offset + 7 )}):Play()
-				
+
 							UpdateSectionSize()
 							dropdown_text.Text = ". . ."
 							for i,v in pairs(drop_part:GetChildren()) do
@@ -1844,7 +2193,7 @@ end
 										game.TweenService:Create(drop_part, TweenInfo.new(0.3), {Size = UDim2.new(drop_part.Size.X.Scale, drop_part.Size.X.Offset,drop_part.Size.Y.Scale,drop_part.Size.Y.Offset - DropDownListLayout.AbsoluteContentSize.Y - 7 )}):Play()
 										game.TweenService:Create(section_main_piece, TweenInfo.new(0.3), {Size = UDim2.new(0, 383,0, 236)}):Play()
 										callback(v.DropDownObjectTitle.Text)
-									
+
 										UpdateSectionSize()
 										drop_part.Visible = false
 										dropdown_text.Text = v.DropDownObjectTitle.Text
@@ -1859,26 +2208,25 @@ end
 							game.TweenService:Create(dropdown_tog, TweenInfo.new(0.3), {Rotation = 0}):Play()
 							game.TweenService:Create(drop_part, TweenInfo.new(0.3), {Size = UDim2.new(drop_part.Size.X.Scale, drop_part.Size.X.Offset,drop_part.Size.Y.Scale,drop_part.Size.Y.Offset - DropDownListLayout.AbsoluteContentSize.Y - 7 )}):Play()
 							game.TweenService:Create(section_main_piece, TweenInfo.new(0.3), {Size = UDim2.new(0, 383,0, 236)}):Play()
-							
+
 							UpdateSectionSize()
 							drop_part.Visible = false
-						
+
 						end
 					end)
 					
+					
+					
 				end
-				
-				
-		
-end
-return Elements
-		
+
+			end
+			return Elements
+
+		end
+		return Sections	
+
 	end
-	return Sections	
-		
-	end
-return Tabs
+	return Tabs
 
 end
 return Lib
-
