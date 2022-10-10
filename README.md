@@ -4,15 +4,15 @@
 
 ## Update ~ 9/15/22
 
-HexHub's Brand New Made From Scrach UI Is Out!
+HexHub's Brand New UI Is Out!
 
 ## #1 Free & Most Updated Roblox Exploit!
 
-HexHub.xyz - Discord.gg/HexHub
+hexhub.rf.gd - Discord.gg/HexHub
 
 # LoadString
 
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoader.lua", true))()`
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoaderV4.lua", true))()`
 
 ### About
 
