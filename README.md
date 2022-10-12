@@ -33,7 +33,7 @@ You may Try The Loader Of HexHubV4 Now, However HexHub v4 Wont Be Out For A Few 
 
 ## V3  
 
-~~V3 will be featuring: New Custom UI Library , New Loader, Complete Exploit Re-Write, Key System, And Much More!!
+ ~~V3 will be featuring: New Custom UI Library , New Loader, Complete Exploit Re-Write, Key System, And Much More!!
 
 > V4 is Now Live!
 
