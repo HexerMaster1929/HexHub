@@ -2,9 +2,9 @@
 
 ![HexHub Banner](https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubBanner2.png)
 
-## Update ~ 9/15/22
+## Update ~ 10/12/22
 
-HexHub's Brand New UI Is Out!
+HEXHUB V4 LOADER AND KEY SYSTEM HAS BEEN PUSHED, UI LIBRARY STILL IN PROGRESS.
 
 ## #1 Free & Most Updated Roblox Exploit!
 
@@ -24,10 +24,18 @@ If you would like to try hexHub legacy, We will continue to update that until th
 
 ### Versions
 
-## V3 (Live) 
+## V4 (Live) 
 
-V3 will be featuring: New Custom UI Library , New Loader, Complete Exploit Re-Write, Key System, And Much More!!
+V4 will be featuring: Brand new UI refresh, Massive UI Sizing Fix For Mobile Executors, Mobile Support With KittenMilk + ArceusX, V4 keysystem Security And AntiBypass Updates, And Alot More
 
+You may Try The Loader Of HexHubV4 Now, However HexHub v4 Wont Be Out For A Few Months At Most.
+
+
+## V3  
+
+~~V3 will be featuring: New Custom UI Library , New Loader, Complete Exploit Re-Write, Key System, And Much More!!
+
+> V4 is Now Live!
 
 ## V2 
 
