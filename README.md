@@ -24,9 +24,13 @@ If you would like to try hexHub legacy, We will continue to update that until th
 
 ### Versions
 
-## V4 (Live) 
+## V5 (Live) 
 
-V4 will be featuring: Brand new UI refresh, Massive UI Sizing Fix For Mobile Executors, Mobile Support With KittenMilk + ArceusX, V4 keysystem Security And AntiBypass Updates, And Alot More
+V5 will be featuring: Brand new UI refresh, Massive UI Sizing Fix For Mobile Executors, Mobile Support With KittenMilk + ArceusX, V4 keysystem Security And AntiBypass Updates, And Alot More
+
+## V4 
+
+V4 will be featuring: New Security, New Keysystem, New Loader
 
 You may Try The Loader Of HexHubV4 Now, However HexHub v4 Wont Be Out For A Few Months At Most.
 
