@@ -2,9 +2,9 @@
 
 ![HexHub Banner](https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubBanner2.png)
 
-## Update ~ 10/12/22
+## Update ~ 10/20/22
 
-HEXHUB V4 LOADER AND KEY SYSTEM HAS BEEN PUSHED, UI LIBRARY STILL IN PROGRESS.
+HexHub Unpatched
 
 ## #1 Free & Most Updated Roblox Exploit!
 
