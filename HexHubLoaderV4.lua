@@ -168,11 +168,11 @@ close_hex_hub.Position = UDim2.new(0.0529411808, 0, 0.864102542, 0)
 close_hex_hub.Size = UDim2.new(0, 304, 0, 41)
 close_hex_hub.Name = "CloseHexHub"
 close_hex_hub.Parent = dis
-close_hex_hub.MouseButton1Down:Connect(Function()
-    hexhub_dis:Destroy()
-    end)
+close_hex_hub.MouseButton1Down:Connect(function()
+	hexhub_dis:Destroy()
+	end)
 
-local uicorner_2 = Instance.new("UICorner")
+	local uicorner_2 = Instance.new("UICorner")
 uicorner_2.Parent = close_hex_hub
 
 local uistroke_2 = Instance.new("UIStroke")
