@@ -1,0 +1,790 @@
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoader.lua", true))()
+if readfile then
+	pcall(function()
+		local new = game:GetService("HttpService"):JSONDecode(readfile("HexHubPizzaFarmSettings.Hex"))
+		local doOverwrite=false
+		for k,v in pairs(new) do
+			if settings[k]==nil then
+				doOverwrite=true
+				new[k]=nil
+			end
+		end
+		for k,v in pairs(settings) do
+			if new[k]==nil then
+				doOverwrite=true
+				new[k]=v
+			end
+		end
+		if doOverwrite then
+			warn("Settings overwritten")
+			writefile("HexHubPizzaFarmSettings.Hex",game:GetService("HttpService"):JSONEncode(new))
+		end
+		--settings = new
+	end)
+end
+
+if getconnections then
+	for _,c in next,getconnections(game:GetService("ScriptContext").Error) do
+		c:Disable()
+	end
+end
+
+local player = game:GetService("Players").LocalPlayer
+local ffc = game.FindFirstChild
+local RNG = Random.new()
+local network
+local character,root
+do
+	local reg = (getreg or debug.getregistry)()
+	for i=1,#reg do
+		local f = reg[i]
+		if type(f)=="function" and tostring(getfenv(f).script)=="Paycheck" then
+			for k,v in next,getupvalues(f) do
+				if tostring(v) == "CashOut" then
+					setupvalue(f,k,{MouseButton1Click={wait=function()end,Wait=function()end}})
+					break
+				end
+			end
+		elseif type(f)=="table" and rawget(f,"FireServer") and rawget(f,"BindEvents") then
+			network = f
+		end
+	end
+	local mt=getrawmetatable(game)
+	if setreadonly then
+		setreadonly(mt,false)
+	elseif make_writeable then
+		make_writeable(mt)
+	end
+	local old__newindex=mt.__newindex
+	if newcclosure then
+		mt.__newindex=newcclosure(function(t,k,v)
+			if t~=workspace.CurrentCamera or tostring(getfenv(2).script)~="LocalMain" then
+				return old__newindex(t,k,v)
+			end
+		end)
+	else
+		mt.__newindex=function(t,k,v)
+			if t~=workspace.CurrentCamera or tostring(getfenv(2).script)~="LocalMain" then
+				return old__newindex(t,k,v)
+			end
+		end
+	end
+	workspace.Main.RealignCamera.RealignCamera:Destroy()
+	Instance.new("BindableEvent",workspace.Main.RealignCamera).Name="RealignCamera"
+end
+assert(network,"failed to find network")
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/UI/V5UILIB"))()
+
+-- HexHub UI Notifs: Version Notification
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubVersion"))() -- Version
+
+local ScriptVer = "5.1.0A"
+
+if HexHubVer ~= ScriptVer then
+	Library:MakeNotification({
+		Title = "HexHub Version Error",
+		Desc = "Version "..tostring(ScriptVer)..", OUTDATED!",
+		Icon = 11346938201,
+		Time = 5.6
+	})
+elseif HexHubVer == ScriptVer then
+	Library:MakeNotification({
+		Title = "HexHub Version",
+		Desc = "Version "..tostring(ScriptVer)..", Up To Date!",
+		Icon = 11346938201,
+		Time = 5.6
+	})
+end
+
+
+-- HexHub UI Notifs: Loaded Notification
+
+wait(.2)
+
+if _G.HexHubLOADED then 
+	Library:MakeNotification({
+		Title = "HexHub Error",
+		Desc = "HexHub V5 Is Already Loaded!",
+		Icon = 11346938201,
+		Time = 5.6
+	})
+else
+	Library:MakeNotification({
+		Title = "HexHub",
+		Desc = "HexHub V5 Loaded, Enjoy!",
+		Icon = 11346938201,
+		Time = 5.6
+	})
+	_G.HexHubLOADED = true
+
+
+	local settings = {
+		Farm = false,
+		FarmingLocation = "Cashier",
+		refill_at = 0,
+		refill_end = 100
+
+	}
+
+	local Win = Library.CreateWindow({
+		WindowTitle = "HexHub V5 - Work At A Pizza Place"
+	})
+
+	--jobs Tab stuff
+
+	local JobsTab = Win:NewTab("Jobs")
+
+	JobsTab:NewButton({
+		ButtonName = "Become Manager",
+		ButtonText = "Get Job",
+		Callback = function()
+			--vars
+			local Players = game:GetService("Players")
+			local player = Players.LocalPlayer
+			local humanoid = player.Character.Humanoid
+			local mteam = game:GetService("Teams").Manager
+			local man = mteam:GetPlayers()[1]
+			--deletes a glitchy chair in the office (optional)
+			if workspace:FindFirstChild("ExtraChair") and workspace.ExtraChair:FindFirstChild("Seat") then
+				workspace.ExtraChair.Seat:Destroy()
+			end
+
+			if man then
+				--check if he's respawning or sitting
+
+				if man.Character==nil or man.Character:FindFirstChild("HumanoidRootPart")==nil or man.Character:FindFirstChild("Humanoid")==nil then
+					Library:MakeNotification({
+						Title = "HexHub Error",
+						Desc = "Failed because manager is Respawning",
+						Icon = 11346938201,
+						Time = 5.6
+					})
+				end
+				local target = man.Character.HumanoidRootPart
+				if man.Character.Humanoid.Sit then
+					Library:MakeNotification({
+						Title = "HexHub Error",
+						Desc = "Failed because manager is Sitting",
+						Icon = 11346938201,
+						Time = 5.6
+					})
+				end
+
+				--get in a car
+				if not workspace.Cars:IsAncestorOf(humanoid.SeatPart) then
+					humanoid.Jump=true
+					wait(0.1)
+					for _,car in ipairs(workspace.Cars:GetChildren()) do
+						if car:FindFirstChild("Driver") and car.Driver.Occupant==nil and car:FindFirstChild("Owner") and car.Owner.Value==nil then
+							car.Driver:Sit(humanoid)
+							wait(0.3)
+							if humanoid.SeatPart then
+								break
+							end
+						end
+					end
+				end
+				local seat = humanoid.SeatPart
+				local car = seat.Parent
+				local returncf = CFrame.new(14,-4.5,21)*CFrame.Angles(0,math.pi/2,0)
+				for j=1,4 do
+					--attempt to sit manager
+					seat.Anchored=false
+					local e = 0
+					while car.HoodSeat.Occupant==nil and mteam:GetPlayers()[1] and target.Parent and e<5 do
+						local newpos = target.Position+Vector3.new(0,-3,0)+target.CFrame.lookVector*5.5+target.Velocity*.7
+						local flatdir = (target.CFrame.lookVector*Vector3.new(1,0,1)).Unit --target's looking direction, flattened
+						if not (flatdir.x < 2) then --inf
+							flatdir = Vector3.new(1,0,0)
+						end
+						car:SetPrimaryPartCFrame(CFrame.new(newpos,newpos-flatdir))
+						seat.Velocity=Vector3.new()
+						local e2=0
+						while car.HoodSeat.Occupant==nil and mteam:GetPlayers()[1] and target.Parent and e2<0.7 do
+							e2=e2+wait()
+						end
+						e=e+e2
+					end
+					--attempt to move manager
+					car:SetPrimaryPartCFrame(returncf)
+					wait(.1)
+					car:SetPrimaryPartCFrame(returncf)
+					seat.Anchored=true
+					e = 0
+					while mteam:GetPlayers()[1] and target.Parent and e<1 do
+						e=e+wait()
+					end
+					car.HoodSeat:ClearAllChildren() --unsits anyone
+					e = 0
+					while mteam:GetPlayers()[1] and target.Parent and e<0.5 do
+						e=e+wait()
+					end
+					if mteam:GetPlayers()[1]==nil or target.Parent==nil then
+						break
+					end
+				end
+				--reset car
+				seat.Anchored=false
+				wait()
+				car:SetPrimaryPartCFrame(CFrame.new(120,10,-75))
+				wait()
+			end
+
+			--become manager
+			humanoid.Jump=true
+			wait(0.1)
+			pcall(function() workspace.ManagerChair.Seat:Sit(humanoid) end)
+			wait(0.3)
+			humanoid.Jump=true
+			wait(0.1)
+			player.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame+Vector3.new(5,5,6)
+			if player.Team ~= game.Teams:FindFirstChild("Manager") then
+				Library:MakeNotification({
+					Title = "HexHub Error",
+					Desc = "Failed To get Manager Job For Unknown Reason",
+					Icon = 11346938201,
+					Time = 5.6
+				})
+			end
+		end,
+	})
+
+	JobsTab:NewLabel("More Soon...")
+
+	-- LP Tab
+
+	local LPTAB = Win:NewTab("Player")
+
+	LPTAB:NewSlider({
+		SliderName = "Walkspeed",
+		SliderText = "Walkspeed",
+		MaximumAmount = 1000,
+		MinimumAmount = 16,
+		Callback = function(WS)
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
+		end,
+	})
+
+	LPTAB:NewSlider({
+		SliderName = "Jump Height",
+		SliderText = "Jump Power",
+		MaximumAmount = 1000,
+		MinimumAmount = 50,
+		Callback = function(JP)
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
+		end,
+	})
+
+	local AFTAB = Win:NewTab("Autofarm")
+
+	AFTAB:NewToggle({
+		ToggleName = "Autofarm",
+		Callback = function(State)
+			settings.Farm = State
+		end,
+	})
+
+	AFTAB:NewDropDown({
+		DropDownName = "Autofarm Location",
+		Options = {"Cashier","Cook","Boxer","Delivery","Supplier"},
+		Callback = function(Opt)
+			settings.FarmingLocation = Opt
+		end,
+	})
+
+	-- Farming Handler
+
+	local supplyCounts = {TomatoSauce=99,Cheese=99,Sausage=99,Pepperoni=99,Dough=99,Box=99,Dew=99}
+	for name in pairs(supplyCounts) do
+		local lbl = workspace.SupplyCounters[name=="Dew" and "CounterMountainDew" or "Counter"..name].a.SG.Counter
+		supplyCounts[name]=tonumber(lbl.Text)
+		lbl.Changed:Connect(function()
+			supplyCounts[name]=tonumber(lbl.Text)
+		end)
+	end
+
+	local function FindFirstCustomer()
+		local children = workspace.Customers:GetChildren()
+		for i=1,#children do
+			local c = children[i]
+			if ffc(c,"Head") and ffc(c,"Humanoid") and c.Head.CFrame.Z<102 and ffc(c.Head,"Dialog") and ffc(c.Head.Dialog,"Correct") and ((c.Humanoid.SeatPart and c.Humanoid.SeatPart.Anchored) or (c.Humanoid.SeatPart==nil and (c.Head.Velocity.Z^2)^.5<.0001)) then
+				return c
+			end
+		end
+	end
+
+	local boxPtick=0
+	local boxDtick=0
+	local function FindBoxes()
+		local c,o,f
+		local children = workspace.AllBox:GetChildren()
+		for i=1,#children do
+			local b = children[i]
+			if ffc(b,"HasPizzaInside") or ffc(b,"Pizza") then
+				if c==nil and b.Name=="BoxClosed" and b.Anchored==false and not b.HasPizzaInside.Value then
+					c=b
+				elseif o==nil and b.Name=="BoxOpen" and b.Anchored==false and not b.Pizza.Value then
+					o=b
+				elseif f==nil and (b.Name=="BoxOpen" and b.Pizza.Value) or (b.Name=="BoxClosed" and b.HasPizzaInside.Value) then
+					f=b
+				end
+				if c and o and f then
+					return c,o,f
+				end
+			end
+		end
+		return c,o,f
+	end
+	local function FindBoxingFoods()
+		local p,d
+		local children = workspace.BoxingRoom:GetChildren()
+		for i=1,#children do
+			local f = children[i]
+			if not f.Anchored then
+				if p==nil and f.Name=="Pizza" then
+					p=f
+				elseif d==nil and f.Name=="Dew" then
+					d=f
+				end
+				if p and d then
+					return p,d
+				end
+			end
+		end
+		return p,d
+	end
+
+	local orderDict={["3540529228"]="Cheese",["3540530535"]="Sausage",["3540529917"]="Pepperoni",["2512571151"]="Dew",["2512441325"]="Dew"}
+	local cookingDict = {Cheese=0,Sausage=0,Pepperoni=0,Dew=0}
+	local cookPtick=0
+	local cookDtick=0
+	local cookWarned=false
+	local boxerWarned=false
+	local function getOrders()
+		local orders={}
+		local tempCookingDict = {}
+		for i,v in pairs(cookingDict) do tempCookingDict[i]=v end
+		local children = workspace.Orders:GetChildren()
+		for i=1,#children do
+			local o = orderDict[children[i].SG.ImageLabel.Image:match("%d+$")]
+			if o then
+				if tempCookingDict[o]>0 then
+					--ignores oven pizzas, so new orders are priority
+					tempCookingDict[o]=tempCookingDict[o]-1
+				elseif (o=="Dew" and #workspace.AllMountainDew:GetChildren()>0) or (supplyCounts[o]>0 and supplyCounts.TomatoSauce>0 and supplyCounts.Cheese>0) then
+					--need supplies
+					orders[#orders+1]=o
+				end
+			end
+		end
+		return orders
+	end
+	local function FindFirstDew()
+		local children = workspace.AllMountainDew:GetChildren()
+		for i=1,#children do
+			if not children[i].Anchored then
+				return children[i]
+			end
+		end
+	end
+	local function FindDoughAndWithout(str)
+		local goodraw,p,raw,trash
+		local children = workspace.AllDough:GetChildren()
+		for i = #children, 2, -1 do --shuffle
+			local j = RNG:NextInteger(1, i)
+			children[j], children[i] = children[i], children[j]
+		end
+		for i=1,#children do
+			local d = children[i]
+			if d.Anchored==false and #d:GetChildren()>9 then
+				if d.IsBurned.Value or d.HasBugs.Value or d.Cold.Value or (d.BrickColor.Name=="Bright orange" and ffc(d,"XBillboard")) then
+					if trash==nil and d.Position.Y > 0 then
+						trash=d
+					end
+				elseif p==nil and d.BrickColor.Name=="Bright orange" then
+					p=d
+				elseif goodraw==nil and d.Position.X<55 and d.BrickColor.Name=="Brick yellow" and ((str and not ffc(d.SG.Frame,str)) or (str==nil and ffc(d.SG.Frame,"Sausage")==nil and ffc(d.SG.Frame,"Pepperoni")==nil)) then
+					--prefers flat
+					if d.Mesh.Scale.Y<1.1 then
+						goodraw=d
+					else
+						raw=d
+					end
+				end
+				if goodraw and p and trash then
+					return goodraw,p,trash
+				end
+			end
+		end
+		return goodraw or raw,p,trash
+	end
+	local function getOvenNear(pos)
+		local children = workspace.Ovens:GetChildren()
+		for i=1,#children do
+			if (children[i].Bottom.Position-pos).magnitude < 1.5 then
+				return children[i]
+			end
+		end
+	end
+	local function getDoughNear(pos)
+		local children = workspace.AllDough:GetChildren()
+		for i=1,#children do
+			if (children[i].Position-pos).magnitude < 1.5 then
+				return children[i]
+			end
+		end
+	end
+	local function isFullyOpen(oven)
+		return oven.IsOpen.Value==true and (oven.Door.Meter.RotVelocity.Z^2)^.5<.0001
+	end
+
+	local bcolorToSupply = {["Dark orange"]="Sausage",["Bright blue"]="Pepperoni",["Bright yellow"]="Cheese",["Bright red"]="TomatoSauce",["Dark green"]="Dew",["Brick yellow"]="Dough",["Light stone grey"]="Box",["Really black"]="Dew"}
+	local supplyButtons = {}
+	for _,button in ipairs(workspace.SupplyButtons:GetChildren()) do
+		supplyButtons[bcolorToSupply[button.Unpressed.BrickColor.Name]] = button.Unpressed
+	end
+
+	local delTool
+	local function FindFirstDeliveryTool()
+		local t
+		local children = workspace:GetChildren()
+		for i=1,#children do
+			local v = children[i]
+			if v.ClassName=="Tool" and v.Name:match("^%u%d$") and ffc(v,"House") and ffc(v,"Handle") and ffc(v,"Order") and v.Order.Value:match("%a") then
+				if ffc(v.Handle,"X10") then
+					return v
+				end
+				t = v
+			end
+		end
+		return t
+	end
+	local function getHousePart(address)
+		local houses = workspace.Houses:GetChildren()
+		for i=1,#houses do
+			local h = houses[i]
+			if ffc(h,"Address") and h.Address.Value==address and ffc(h,"Upgrades") and h.Upgrades:GetChildren()[1] and ffc(h.Upgrades:GetChildren()[1],"GivePizza") then
+				return h.Upgrades:GetChildren()[1].GivePizza
+			end
+		end
+	end
+	local delTouched=false
+	local function forgetDeliveryTool()
+		if delTool then
+			if delTool.Parent==player.Backpack then
+				delTool.Parent = character
+			end
+			if delTool.Parent==character then
+				wait(0.1)
+				delTool.Parent = workspace
+				wait(0.1)
+			end
+		end
+		delTool=nil
+		delTouched=false
+		if ffc(character,"RightHand") and ffc(character.RightHand,"RightGrip") then
+			character.RightHand.RightGrip:Destroy()
+		end
+	end
+
+	local function onCharacterAdded(char)
+		if not char then return end
+		character=char
+		root = character:WaitForChild("HumanoidRootPart")
+		character:WaitForChild("Humanoid"):GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+			if delTool then
+				character.Humanoid.WalkSpeed=16
+			end
+		end)
+	end
+	onCharacterAdded(player.Character or player.CharacterAdded:Wait())
+	player.CharacterAdded:Connect(onCharacterAdded)
+
+	local function simTouch(part)
+		local oldcc = part.CanCollide
+		local oldcf = part.CFrame
+		part.CanCollide = false
+		part.CFrame = root.CFrame
+		delay(0.01,function()
+			part.CFrame = oldcf
+			part.CanCollide = oldcc
+		end)
+	end
+	--//main loop
+	while task.wait() and settings.Farm do
+		wait(0.3)
+		local hum = character:FindFirstChild("Humanoid")
+		if hum and hum.Sit then hum.Jump = true end
+		if settings.FarmingLocation == "Cashier" then
+			local c = FindFirstCustomer()
+			if c then
+				local dialog = c.Head.Dialog.Correct.ResponseDialog or ''
+				local rootMoved = false
+				if (root.Position-Vector3.new(46.34, 3.80, 82.02)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(46.34, 3.80, 82.02) wait(.1) end
+				local order = "MountainDew"
+				if dialog:sub(-8)=="instead." then
+					dialog = dialog:sub(-30)
+				end
+				if dialog:find("pepperoni",1,true) then
+					order = "PepperoniPizza"
+				elseif dialog:find("sausage",1,true) then
+					order = "SausagePizza"
+				elseif dialog:find("cheese",1,true) then
+					order = "CheesePizza"
+				end
+
+				network:FireServer("OrderComplete", c, order, workspace.Register3)
+				if rootMoved then wait(.1) end
+			end
+		end
+		if settings.FarmingLocation == "Cook" then
+			local order = getOrders()[1]
+			local topping
+			if order=="Pepperoni" or order=="Sausage" then topping=order end
+			local cookD = FindFirstDew()
+			local raw,cookP,trash
+			if topping then
+				--pepperoni order avoids sausage dough and vice verca
+				raw,cookP,trash = FindDoughAndWithout(topping=="Pepperoni" and "Sausage" or "Pepperoni")
+			else
+				raw,cookP,trash = FindDoughAndWithout()
+			end
+			local rootMoved = false
+			local ovens = workspace.Ovens:GetChildren()
+			for i = #ovens, 2, -1 do --shuffle
+				local j = RNG:NextInteger(1, i)
+				ovens[j], ovens[i] = ovens[i], ovens[j]
+			end
+			--move final pizza
+			if cookP and tick()-cookPtick>0.8 then
+				local oven = getOvenNear(cookP.Position)
+				if oven==nil or oven.IsOpen.Value then
+					cookPtick=tick()
+					if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+					network:FireServer("UpdateProperty", cookP, "CFrame", CFrame.new(56,4.1,38))
+				end
+			end
+			if order then
+				if order=="Dew" and cookD and tick()-cookDtick>0.8 then
+					--move dew if ordered
+					cookDtick=tick()
+					if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+					network:FireServer("UpdateProperty", cookD, "CFrame", CFrame.new(53,4.68,36.5))
+				elseif order~="Dew" and raw and raw.Parent and supplyCounts[order]>0 and supplyCounts.TomatoSauce>0 and supplyCounts.Cheese>0 then
+					--make pizza
+					if raw.Mesh.Scale.Y>1.5 then
+						if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+						network:FireServer("UpdateProperty", raw, "CFrame", CFrame.new(RNG:NextNumber(29.6,44.6),3.7,RNG:NextNumber(42.5,48.5)))
+						wait()
+						network:FireServer("SquishDough", raw)
+					else
+						--make sure it will have an oven
+						local oven
+						for _,o in ipairs(ovens) do
+							if isFullyOpen(o) then
+								local other = getDoughNear(o.Bottom.Position)
+								if other==nil or not (other.BrickColor.Name=="Bright orange" and ffc(other.SG.Frame,"TomatoSauce") and ffc(other.SG.Frame,"MeltedCheese")) then
+									if other then
+										--replace mistaken dough
+										if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+										network:FireServer("UpdateProperty", other, "CFrame", CFrame.new(RNG:NextNumber(29.6,44.6),3.7,RNG:NextNumber(42.5,48.5)))
+										wait()
+									end
+									oven=o
+									break
+								end
+							end
+						end
+						if oven and raw.Parent==workspace.AllDough then
+							--make
+							if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+							network:FireServer("AddIngredientToPizza", raw,"TomatoSauce")
+							network:FireServer("AddIngredientToPizza", raw,"Cheese")
+							network:FireServer("AddIngredientToPizza", raw,topping)
+							network:FireServer("UpdateProperty", raw, "CFrame", oven.Bottom.CFrame+Vector3.new(0,0.7,0))
+							oven.Door.ClickDetector.Detector:FireServer()
+							--mark as cooking
+							cookingDict[order]=cookingDict[order]+1
+							local revoked=false
+							spawn(function()
+								raw.AncestryChanged:Wait()
+								if not revoked then
+									cookingDict[order]=cookingDict[order]-1
+									revoked=true
+								end
+							end)
+							delay(40, function()
+								if not revoked then
+									cookingDict[order]=cookingDict[order]-1
+									revoked=true
+								end
+							end)
+						end
+					end
+				end
+			end
+			--open unnecessarily closed ovens
+			for _,o in ipairs(ovens) do
+				local bar = o.Door.Meter.SurfaceGui.ProgressBar.Bar
+				if o.IsOpen.Value==false and (o.IsCooking.Value==false or (Vector3.new(bar.ImageColor3.r,bar.ImageColor3.g,bar.ImageColor3.b)-Vector3.new(.871,.518,.224)).magnitude>.1) then
+					if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+					o.Door.ClickDetector.Detector:FireServer()
+					break
+				end
+			end
+			--trash
+			if trash and (trash.IsBurned.Value==false or getOvenNear(trash.Position)==nil or getOvenNear(trash.Position).IsOpen.Value) then
+				--closed oven breaks if you take burnt out of it
+				if (root.Position-Vector3.new(44.63, 6.60, 45.20)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(44.63, 6.60, 45.20) wait(.1) end
+				network:FireServer("UpdateProperty", trash, "CFrame", CFrame.new(47.9,RNG:NextNumber(-10,-30),72.5))
+			end
+			if rootMoved then wait(.1) end
+		end
+		if settings.FarmingLocation == "Boxer" then
+			local boxP,boxD = FindBoxingFoods()
+			local closedBox,openBox,fullBox = FindBoxes()
+			local rootMoved = false
+			if boxD and tick()-boxDtick>0.8 then
+				boxDtick=tick()
+				if (root.Position-Vector3.new(54.09, 3.80, 23.150)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(54.09, 3.80, 23.15) wait(.1) end
+				network:FireServer("UpdateProperty", boxD, "CFrame", CFrame.new(63,4.9,-1,-1,0,0,0,1,0,0,0,-1))
+			end
+			if fullBox then
+				if fullBox.Name=="BoxOpen" then
+					if (root.Position-Vector3.new(54.09, 3.80, 23.150)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(54.09, 3.80, 23.15) wait(.1) end
+					network:FireServer("CloseBox", fullBox)
+					--will be moved next loop
+				elseif tick()-boxPtick>0.8 then
+					if (root.Position-Vector3.new(54.09, 3.80, 23.150)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(54.09, 3.80, 23.15) wait(.1) end
+					network:FireServer("UpdateProperty", fullBox, "CFrame", CFrame.new(68.2,4.4,-1,-1,0,0,0,1,0,0,0,-1))
+					boxPtick=tick()
+				end
+			end
+			if closedBox and not openBox then
+				if (root.Position-Vector3.new(54.09, 3.80, 23.150)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(54.09, 3.80, 23.15) wait(.1) end
+				network:FireServer("UpdateProperty", closedBox, "CFrame", CFrame.new(RNG:NextNumber(62.5,70.5),3.5,RNG:NextNumber(11,25)))
+				wait()
+				network:FireServer("OpenBox", closedBox)
+			end
+			if openBox and boxP then
+				if (root.Position-Vector3.new(54.09, 3.80, 23.150)).magnitude>9 then rootMoved = true root.CFrame = CFrame.new(54.09, 3.80, 23.15) wait(.1) end
+				network:FireServer("UpdateProperty", boxP, "Anchored", true)
+				network:FireServer("UpdateProperty", openBox, "Anchored", true)
+				wait()
+				network:FireServer("UpdateProperty", boxP, "CFrame", openBox.CFrame+Vector3.new(0,-2,0))
+				wait()
+				network:FireServer("AssignPizzaToBox", openBox, boxP)
+			end
+			if rootMoved then wait(.1) end
+		end
+		if settings.FarmingLocation == "Supplier" then
+			local refill=false
+			for s,c in pairs(supplyCounts) do
+				if c <= settings.refill_at then
+					refill=true
+					break
+				end
+			end
+			if refill then
+				local oldcf = root.CFrame
+				local alt=0
+				local waiting = false
+				local waitingTick = 0
+				local lastBox
+				while settings.FarmingLocation == "Supplier" do
+					--check if refill is done otherwise hit buttons
+					local fulfilled=true
+					local boxes = workspace.AllSupplyBoxes:GetChildren()
+					for s,c in pairs(supplyCounts) do
+						if c<settings.refill_end then
+							fulfilled=false
+							local count = 0
+							if #boxes > 30 then
+								for i=1,#boxes do
+									local box = boxes[i]
+									if bcolorToSupply[box.BrickColor.Name]==s and box.Anchored==false and box.Position.Z < -940 then
+										count=count+1
+									end
+								end
+							end
+							if count < 2 then
+								simTouch(supplyButtons[s])
+							end
+						end
+					end
+					if fulfilled then
+						break
+					end
+					wait(1.5)
+					--check if can finish waiting for boxes to move
+					if waiting and (lastBox.Position.X>42 or tick()-waitingTick>5) then
+						waiting=false
+						if lastBox.Position.X<42 then
+							--clear boxes if stuck
+							root.CFrame=CFrame.new(20.5,8,-35)
+							wait(0.1)
+							local boxes = workspace.AllSupplyBoxes:GetChildren()
+							for i=1,#boxes do
+								local box = boxes[i]
+								if box.Anchored==false and box.Position.Z>-55 then
+									network:FireServer("UpdateProperty", box, "CFrame", CFrame.new(RNG:NextNumber(0,40),RNG:NextNumber(-10,-30),-70))
+									wait()
+								end
+							end
+							wait(0.1)
+						end
+					end
+					if not waiting then
+						--move boxes
+						root.CFrame=CFrame.new(8,12.4,-1020)
+						wait(0.1)
+						alt=1-alt
+						lastBox=nil
+						local j=0
+						local boxes = workspace.AllSupplyBoxes:GetChildren()
+						for i=1,#boxes do
+							local box = boxes[i]
+							if box.Anchored==false and box.Position.Z < -940 and bcolorToSupply[box.BrickColor.Name] and supplyCounts[bcolorToSupply[box.BrickColor.Name]]<settings.refill_end then
+								box.CFrame = CFrame.new(38-4*j,5,-7-5*alt)
+								network:FireServer("UpdateProperty", box, "CFrame", box.CFrame)
+								lastBox=box
+								j=j+1
+								if j>8 then break end
+							end
+						end
+						if alt==0 and lastBox then
+							waiting=true
+							waitingTick=tick()
+						end
+					end
+				end
+				root.CFrame=oldcf
+			end
+		end
+		if settings.FarmingLocation == "Delivery" then
+			local del = FindFirstDeliveryTool()
+			if delTool==nil and del then
+				--get tool
+				delTool=del
+				if (root.Position-delTool.Handle.Position).magnitude>19 then
+					root.CFrame = CFrame.new(delTool.Handle.Position+Vector3.new(0,1,-15)) 
+				end
+				delTool.Handle.CanCollide=false
+				delTool.Handle.CFrame = root.CFrame
+				wait(0.9)
+				delay(6,forgetDeliveryTool)
+			elseif delTool and delTool.Parent==character and delTouched==false then
+				--deliver to house
+				local housePart = getHousePart(delTool.Name)
+				if housePart then
+					delTouched=true
+					root.CFrame = housePart.CFrame+Vector3.new(0,9,0)
+					wait(0.3)
+				end
+			end
+		end
+	end
+
+end
