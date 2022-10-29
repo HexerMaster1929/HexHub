@@ -2,9 +2,9 @@
 
 ![HexHub Banner](https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubBanner2.png)
 
-## Update ~ 10/20/22
+## Update ~ 10/29/22
 
-HexHub Unpatched
+Github Repo Will Be Sunsetted Soon
 
 ## #1 Free & Most Updated Roblox Exploit!
 
