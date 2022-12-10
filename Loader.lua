@@ -1,8 +1,4 @@
 
-
---loadstring(game:HttpGet('https://raw.githubusercontent.com/MonkoTubeYT/carscript/master/!carscript.lua',true))()
---https://www.roblox.com/catalog/4435389917/Eltoria-RX750
-
 local Succ,Err = pcall(function()
 
 local LoaderInterface = game:GetObjects("rbxassetid://11787775916")[1]
