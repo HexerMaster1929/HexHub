@@ -12,7 +12,7 @@ hexhub.rf.gd - Discord.gg/HexHub
 
 # LoadString
 
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/HexHubLoaderV4.lua", true))()`
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/Loader.lua", true))()`
 
 ### About
 
@@ -55,6 +55,6 @@ V5 will be featuring: Brand new UI refresh, Massive UI Sizing Fix For Mobile Exe
 
 ## Legacy
 
-Legacy version of hexhub, Will be updated daily Until January 1st, 2023 @ 12:00 AM
+~~Legacy version of hexhub, Will be updated daily Until January 1st, 2023 @ 12:00 AM~~
 
-> Discontinued As Of Jan 1st, 2023.
+> Officially Discontinued.
