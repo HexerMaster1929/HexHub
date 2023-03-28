@@ -78,11 +78,11 @@ local Success,Error = pcall(function()
 			warn("Star Found")
 			return true, GetInfo(Player)
 		else
-			if game:GetService("RunService"):IsStudio() or Settings.Debug then
-				return true, GetInfo(Player)
-			else
+			--if game:GetService("RunService"):IsStudio() or Settings.Debug then
+				--return true, GetInfo(Player)
+			--else
 				return false
-			end
+			--end
 		end
 	end
 
