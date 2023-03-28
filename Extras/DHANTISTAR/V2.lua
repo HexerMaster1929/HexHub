@@ -1,3 +1,5 @@
+local Success,Error = pcall(function()
+
 local UI = game:GetObjects("rbxassetid://12923461037")[1] or script.Parent
 local Notice = UI.Main.CornerHolder.StarNotice
 local List = UI.Main.StarList
@@ -307,4 +309,9 @@ if not RunService:IsStudio() then
 	end
 else
 	UI.Parent = game.Players.LocalPlayer.PlayerGui
+end
+if Error then
+	print(Error)
+elseif Success then
+	print(Success)
 end
