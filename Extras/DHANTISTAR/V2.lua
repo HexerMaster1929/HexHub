@@ -34,6 +34,7 @@ Settings = {
 Star = "⭐" or "U+2B50"
 StarTable = {}
 local WarningBlacklists = {}
+local WarningListBlacklists = {}
 
 HTTP = game:GetService("HttpService")
 Players = game:GetService("Players")
@@ -146,7 +147,8 @@ function CheckForStars()
 end
 
 function AddListEntry(Info,BanWarn)
-	if table.find(WarningBlacklists,Info.id) ~= nil then return end
+	warn("Add Star To List")
+	if table.find(WarningListBlacklists,Info.id) ~= nil then return end
 	local Template;-- = script.Template:Clone()
 	if BanWarn then
 		Template = Assets.TemplateBan:Clone()
@@ -164,7 +166,7 @@ function AddListEntry(Info,BanWarn)
 			Template:Destroy()
 		end
 	end)
-	table.insert(WarningBlacklists,Info.id)
+	table.insert(WarningListBlacklists,Info.id)
 end
 
 task.spawn(function()
@@ -191,19 +193,40 @@ end)
 end)]]--
 
 CheckForStars()
-
-game.Players.PlayerAdded:Connect(function()
+for i,v in pairs(game.Players:GetPlayers()) do
+local Star,Info = IsStar(v)
+if Star then
+	AddListEntry(Info,false)
+	end
+	end
+game.Players.PlayerAdded:Connect(function(Player)
 	CheckForStars()
+	local Star,Info = IsStar(Player)
+	if Star then
+		AddListEntry(Info,false)
+	end
 end)
 
 game.Players.PlayerRemoving:Connect(function()
 	CheckForStars()
+	for i,v in pairs(game.Players:GetPlayers()) do
+		local Star,Info = IsStar(v)
+		if Star then
+			AddListEntry(Info,false)
+		end
+	end
 end)
 
 task.spawn(function()
 
 	while task.wait(Settings.SearchInterval) do
 		CheckForStars()
+		for i,v in pairs(game.Players:GetPlayers()) do
+			local Star,Info = IsStar(v)
+			if Star then
+				AddListEntry(Info,false)
+			end
+		end
 	end
 end)
 
