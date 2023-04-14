@@ -12,7 +12,7 @@ assert((Request),"Cannot Start Antistar, Exploit Requires Request Function")
 local MessageBox = loadstring(game:HttpGet("https://raw.githubusercontent.com/HexerMaster1929/HexHub/main/Extras/DHANTISTAR/HexMes_Messagebox.lua"))()
 local MessageName;
 
-Ver = "2.0C"
+Ver = "2.0B"
 
 local RunService = game:GetService("RunService")
 local CoreGui = game:GetService("CoreGui")
@@ -58,7 +58,7 @@ StarterGui = game:GetService("StarterGui")
 GuiService = game:GetService("GuiService")
 Lighting = game:GetService("Lighting")
 ContextActionService = game:GetService("ContextActionService")
-NetworkClient = game:GetService("NetworkClient")
+--NetworkClient = game:GetService("NetworkClient")
 ReplicatedStorage = game:GetService("ReplicatedStorage")
 GroupService = game:GetService("GroupService")
 PathService = game:GetService("PathfindingService")
@@ -266,14 +266,7 @@ end
 
 
 
---[[game.Players.PlayerAdded:Connect(function(Player)
-	CheckForStars()
-	local Star,Info = IsStar(Player)
-	if Star then
-		AddListEntry(Info,false)
-	end
-	
-end)]]--
+
 
 CheckForStars()
 for i,v in pairs(game.Players:GetPlayers()) do
@@ -411,7 +404,7 @@ MainDropFrame.Collapse.MouseButton1Down:Connect(function()
 end)
 
 for i,v in pairs(Settings.MainSettings.SearchOptions) do
-	local NewBtn =  Assets.DropdownEntry:Clone()
+	local NewBtn = Assets.DropdownEntry:Clone()
 	NewBtn.Label.Text = tostring(v)
 	NewBtn.MouseButton1Down:Connect(function()
 		MainDropFrame.Label.Text = tostring(v)
@@ -442,10 +435,12 @@ Toggle1.Click.MouseButton1Down:Connect(function()
 	if IsToggle1 then
 		Toggle1.Click.Label.TextTransparency = 1
 		Settings.MainSettings.FakeStar = false
+		
 		IsToggle1 = false
 	elseif not IsToggle1 then
 		Toggle1.Click.Label.TextTransparency = 0
 		Settings.MainSettings.FakeStar = true
+		game.Workspace:FindFirstChild(Players.LocalPlayer.Name):FindFirstChild("Humanoid").DisplayName = "[⭐]"..game.Workspace:FindFirstChild(Players.LocalPlayer.Name):FindFirstChild("Humanoid").DisplayName
 		IsToggle1 = true
 	end
 end)
@@ -478,7 +473,7 @@ end)
 
 List.Border.ImageColor3 = Themes[Settings.CurrentTheme].BorderColor
 Notice.Border.ImageColor3 = Themes[Settings.CurrentTheme].BorderColor
-Settings.Border.ImageColor3 = Themes[Settings.CurrentTheme].BorderColor
+SettingsFrame.Border.ImageColor3 = Themes[Settings.CurrentTheme].BorderColor
 
 Notice.Changed:Connect(function(Prop)
 	if Notice.Visible then
